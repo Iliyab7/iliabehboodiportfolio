@@ -192,11 +192,11 @@ export const content = {
       brand: "Ilia Behboodi",
       items: [
         { label: "How I Help", href: "#help" },
+        { label: "Use Cases", href: "#ai-use-cases" },
         { label: "Projects", href: "#projects" },
         { label: "Impact", href: "#impact" },
-        { label: "Process", href: "#process" },
+        { label: "Experience", href: "#experience" },
         { label: "Tech Stack", href: "#tech" },
-        { label: "About", href: "#about" },
         { label: "Contact", href: "#contact" }
       ],
       cta: "Contact Me"

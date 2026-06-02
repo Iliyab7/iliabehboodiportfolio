@@ -11,11 +11,46 @@ export type CaseStudy = {
   process: readonly string[];
   impactMetrics: readonly { label: string; value: string }[];
   link?: string;
-  visual: "mining" | "website" | "quarry" | "chatbot" | "logistics";
+  visual: "mining" | "website" | "quarry" | "chatbot" | "logistics" | "academy";
 };
 
 export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
   en: [
+    {
+      slug: "international-academy-management-system",
+      title: "International Academy Management System",
+      category: "Operations System / Education Management",
+      summary:
+        "A scalable remote operations system for managing CRM, sales, class scheduling, teacher allocation, student records, payroll, commissions, surveys, observations, and management reporting for an international academy.",
+      problem:
+        "Remote academy operations can become scattered across spreadsheets, messages, schedules, manual follow-ups, and disconnected reporting systems.",
+      solution:
+        "Designed a modular Google Sheets and Apps Script-based system that connects CRM, class scheduling, teacher allocation, attendance, surveys, observations, financial tracking, and reporting into a structured operational workflow.",
+      whatIBuilt: [
+        "CRM structure for leads, students, and follow-ups",
+        "Class scheduling and teacher assignment workflow",
+        "Attendance and observation tracking",
+        "Survey and feedback structure",
+        "Payroll and commission tracking concept",
+        "Management reporting dashboard foundation",
+        "AI-assisted reporting and follow-up messaging concept",
+        "Scalable structure for future SaaS or WebApp conversion"
+      ],
+      tools: ["Google Sheets", "Google Apps Script", "Workflow Design", "CRM Logic", "Dashboard Design", "AI/LLM Reporting"],
+      outcomes: [
+        "Organized remote academy operations",
+        "Reduced dependency on scattered manual tracking",
+        "Improved visibility across students, teachers, classes, and operations",
+        "Created a scalable foundation for future productization"
+      ],
+      process: ["Map academy operations", "Design CRM data model", "Connect class scheduling", "Structure reporting", "Prepare AI follow-up layer"],
+      impactMetrics: [
+        { label: "Operations", value: "Organized" },
+        { label: "Visibility", value: "Improved" },
+        { label: "Productization", value: "Ready" }
+      ],
+      visual: "academy"
+    },
     {
       slug: "mining-operations-management-system",
       title: "Mining Operations Management System",
@@ -177,6 +212,41 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
     }
   ],
   fa: [
+    {
+      slug: "international-academy-management-system",
+      title: "سیستم مدیریت آموزشگاه بین‌المللی",
+      category: "سیستم عملیاتی / مدیریت آموزشگاه",
+      summary:
+        "یک سیستم عملیاتی مقیاس‌پذیر برای مدیریت CRM، فروش، زمان‌بندی کلاس‌ها، تخصیص مدرس، اطلاعات دانشجویان، حقوق، کمیسیون، نظرسنجی، Observation و گزارش مدیریتی در یک آموزشگاه بین‌المللی.",
+      problem:
+        "عملیات یک آموزشگاه ریموت می‌تواند بین فایل‌های پراکنده، پیام‌ها، زمان‌بندی‌ها، پیگیری‌های دستی و گزارش‌های جدا از هم پخش شود.",
+      solution:
+        "یک سیستم ماژولار مبتنی بر Google Sheets و Apps Script طراحی شد که CRM، زمان‌بندی کلاس‌ها، تخصیص مدرس، حضور و غیاب، نظرسنجی، Observation، پیگیری مالی و گزارش‌گیری را در یک جریان عملیاتی ساختاریافته متصل می‌کند.",
+      whatIBuilt: [
+        "ساختار CRM برای لیدها، دانشجویان و پیگیری‌ها",
+        "جریان زمان‌بندی کلاس و تخصیص مدرس",
+        "ثبت حضور و غیاب و Observation",
+        "ساختار نظرسنجی و بازخورد",
+        "کانسپت پیگیری حقوق و کمیسیون",
+        "زیرساخت داشبورد گزارش مدیریتی",
+        "کانسپت گزارش‌سازی و پیام‌های پیگیری با کمک AI",
+        "ساختار قابل توسعه برای تبدیل آینده به SaaS یا WebApp"
+      ],
+      tools: ["Google Sheets", "Google Apps Script", "طراحی جریان کار", "منطق CRM", "طراحی داشبورد", "گزارش‌سازی AI/LLM"],
+      outcomes: [
+        "ساماندهی عملیات آموزشگاه ریموت",
+        "کاهش وابستگی به پیگیری دستی و فایل‌های پراکنده",
+        "افزایش شفافیت در وضعیت دانشجویان، مدرس‌ها، کلاس‌ها و عملیات",
+        "ایجاد زیرساخت قابل توسعه برای محصول‌سازی در آینده"
+      ],
+      process: ["مدل‌سازی عملیات آموزشگاه", "طراحی ساختار CRM", "اتصال زمان‌بندی کلاس‌ها", "ساختاردهی گزارش‌ها", "آماده‌سازی لایه پیگیری با AI"],
+      impactMetrics: [
+        { label: "عملیات", value: "ساماندهی" },
+        { label: "شفافیت", value: "بیشتر" },
+        { label: "توسعه محصول", value: "آماده" }
+      ],
+      visual: "academy"
+    },
     {
       slug: "mining-operations-management-system",
       title: "سیستم مدیریت عملیات معدن",

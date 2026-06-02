@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { caseStudySlugs } from "@/data/caseStudies";
 
-const baseUrl = "https://iliabehboodi.com";
+const baseUrl = "https://iliabehboodiportfolio.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

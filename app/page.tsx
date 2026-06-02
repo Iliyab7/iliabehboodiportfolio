@@ -12,9 +12,14 @@ import {
   Send,
   Sun
 } from "lucide-react";
+import { AdditionalExpertise } from "@/components/AdditionalExpertise";
+import { AIBusinessUseCases } from "@/components/AIBusinessUseCases";
+import { AIToolStack } from "@/components/AIToolStack";
 import { Badge } from "@/components/Badge";
 import { Container } from "@/components/Container";
 import { DataDivider } from "@/components/DataDivider";
+import { EducationLearning } from "@/components/EducationLearning";
+import { ExperienceSection } from "@/components/ExperienceSection";
 import { HeroVisual } from "@/components/HeroVisual";
 import { HowIHelp } from "@/components/HowIHelp";
 import { ImpactDashboard } from "@/components/ImpactDashboard";
@@ -27,6 +32,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { ScrollCompanion } from "@/components/ScrollCompanion";
 import { SystemArchitecture } from "@/components/SystemArchitecture";
 import { TechStackItem } from "@/components/TechStackItem";
+import { WorkingPrinciples } from "@/components/WorkingPrinciples";
 import { caseStudies } from "@/data/caseStudies";
 import { contactLinks, content, type Language } from "@/data/content";
 
@@ -42,6 +48,18 @@ export default function Home() {
   const projects = caseStudies[language];
   const isFa = language === "fa";
   const isDark = theme === "dark";
+  const headerNav =
+    language === "fa"
+      ? [
+          { label: "کمک به کسب‌وکار", href: "#help" },
+          { label: "کاربردهای AI", href: "#ai-use-cases" },
+          { label: "پروژه‌ها", href: "#projects" },
+          { label: "اثرگذاری", href: "#impact" },
+          { label: "تجربه", href: "#experience" },
+          { label: "ابزارها", href: "#tech" },
+          { label: "تماس", href: "#contact" }
+        ]
+      : t.nav.items;
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("theme") as Theme | null;
@@ -82,7 +100,7 @@ export default function Home() {
             {t.nav.brand}
           </a>
           <nav className="hidden items-center gap-6 text-sm font-medium text-muted dark:text-slate-400 lg:flex">
-            {t.nav.items.map((item) => (
+            {headerNav.map((item) => (
               <a key={item.href} className="transition hover:text-ink dark:hover:text-white" href={item.href}>
                 {item.label}
               </a>
@@ -209,6 +227,9 @@ export default function Home() {
       <HowIHelp language={language} />
       <DataDivider />
 
+      <AIBusinessUseCases language={language} />
+      <DataDivider />
+
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="pointer-events-none absolute left-0 top-24 h-72 w-72 rounded-full bg-blue-100/40 blur-3xl dark:bg-blue-500/10" />
         <Container>
@@ -301,6 +322,9 @@ export default function Home() {
       </section>
       <DataDivider />
 
+      <ExperienceSection language={language} />
+      <DataDivider />
+
       <section className="py-12 md:py-20 lg:py-28">
         <Container>
           <SectionHeader
@@ -386,8 +410,14 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+          <AIToolStack language={language} />
         </Container>
       </section>
+
+      <WorkingPrinciples language={language} />
+      <DataDivider />
+
+      <EducationLearning language={language} />
 
       <section id="about" className="border-y border-slate-200 bg-white py-12 transition-colors dark:border-slate-800 dark:bg-[#07111f] md:py-20 lg:py-28">
         <Container>
@@ -396,6 +426,7 @@ export default function Home() {
             <Reveal>
               <div className="glass-panel rounded-lg p-6 sm:p-8">
                 <p className="text-lg leading-8 muted-copy">{t.about.body}</p>
+                <AdditionalExpertise language={language} />
               </div>
             </Reveal>
           </div>
