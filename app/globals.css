@@ -1,0 +1,157 @@
+@import "@fontsource/vazirmatn/400.css";
+@import "@fontsource/vazirmatn/500.css";
+@import "@fontsource/vazirmatn/600.css";
+@import "@fontsource/vazirmatn/700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background: #ffffff;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #101828;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+.dark body {
+  background: #050a12;
+  color: #f8fafc;
+}
+
+[dir="rtl"] body,
+[lang="fa"] body {
+  font-family:
+    Vazirmatn, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  line-height: 1.95;
+  font-weight: 400;
+}
+
+[dir="rtl"] {
+  letter-spacing: 0;
+}
+
+html[lang="fa"] p,
+html[lang="fa"] li {
+  line-height: 2;
+}
+
+html[lang="fa"] h1 {
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+html[lang="fa"] h2,
+html[lang="fa"] h3 {
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+::selection {
+  background: #dbeafe;
+  color: #08111f;
+}
+
+.mesh-panel {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.18), transparent 26%),
+    radial-gradient(circle at 80% 18%, rgba(148, 163, 184, 0.22), transparent 28%),
+    linear-gradient(145deg, #0b1627, #101828 48%, #17202e);
+}
+
+.subtle-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.noise-layer {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.10) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.dark .noise-layer {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(125, 211, 252, 0.16) 1px, transparent 0);
+}
+
+@layer components {
+  .section-surface {
+    @apply bg-white text-ink transition-colors dark:bg-[#07111f] dark:text-slate-100;
+  }
+
+  .card-premium {
+    @apply border border-slate-200 bg-white/90 shadow-soft backdrop-blur transition duration-300 dark:border-slate-700/70 dark:bg-slate-900/75;
+  }
+
+  .card-premium-hover {
+    @apply hover:-translate-y-1 hover:border-blue-200 hover:shadow-premium dark:hover:border-blue-400/50 dark:hover:bg-slate-800/70;
+  }
+
+  .glass-panel {
+    @apply border border-slate-200 bg-white/70 shadow-premium backdrop-blur-xl dark:border-slate-700/70 dark:bg-slate-950/60;
+  }
+
+  .muted-copy {
+    @apply text-muted dark:text-slate-300;
+  }
+
+  .subtle-card {
+    @apply border border-slate-200 bg-slate-50 dark:border-slate-700/70 dark:bg-slate-900/60;
+  }
+
+  .gradient-edge {
+    @apply before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-blue-600 before:via-cyan-400 before:to-transparent before:opacity-80;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-clamp-2 {
+      display: block;
+      overflow: visible;
+    }
+  }
+}
