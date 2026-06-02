@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,7 +19,8 @@ const config: Config = {
         skyline: "#e6f0ff"
       },
       boxShadow: {
-        soft: "0 18px 60px rgba(8, 17, 31, 0.08)"
+        soft: "0 18px 60px rgba(8, 17, 31, 0.08)",
+        premium: "0 28px 90px rgba(8, 17, 31, 0.14)"
       }
     }
   },
