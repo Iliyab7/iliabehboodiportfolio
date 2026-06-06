@@ -245,9 +245,9 @@ export const content = {
     },
     projectsSection: {
       eyebrow: "Featured Projects",
-      title: "Industrial automation, B2B websites, dashboards, and AI reporting concepts.",
+      title: "Proof that messy operations can become clearer systems.",
       description:
-        "Each project is structured around a real business problem, the system designed to solve it, and the operational outcomes it supports.",
+        "These case studies show the same pattern behind the AI Productivity Audit: find the manual bottleneck, structure the data, automate the repeated work, and turn reporting into faster management decisions.",
       labels: {
         problem: "Problem",
         solution: "Solution",

@@ -60,6 +60,14 @@ export default function Home() {
           { label: "تماس", href: "#contact" }
         ]
       : t.nav.items;
+  const projectsSection = isFa
+    ? {
+        ...t.projectsSection,
+        title: "نمونه‌هایی از تبدیل کارهای دستی و پراکنده به سیستم‌های شفاف‌تر.",
+        description:
+          "این پروژه‌ها همان منطق عارضه‌یابی بهره‌وری را نشان می‌دهند: پیدا کردن گلوگاه دستی، ساختاردهی داده، خودکارسازی کارهای تکراری و تبدیل گزارش‌ها به تصمیم‌گیری سریع‌تر مدیریتی."
+      }
+    : t.projectsSection;
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("theme") as Theme | null;
@@ -293,9 +301,9 @@ export default function Home() {
         <Container>
           <SectionHeader
             lang={language}
-            eyebrow={t.projectsSection.eyebrow}
-            title={t.projectsSection.title}
-            description={t.projectsSection.description}
+            eyebrow={projectsSection.eyebrow}
+            title={projectsSection.title}
+            description={projectsSection.description}
           />
           <p className="mb-3 text-xs font-semibold text-muted dark:text-slate-400 lg:hidden">
             {isFa ? "پروژه‌ها را افقی مرور کنید" : "Swipe projects"}
