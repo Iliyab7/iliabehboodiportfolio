@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Mail, MessageCircle, Send } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, ClipboardCheck, Mail, MessageCircle, Route, Send } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/Container";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -117,6 +117,49 @@ const helpContent = {
   }
 } as const;
 
+const auditOfferContent = {
+  en: {
+    label: "Core offer",
+    title: "AI Productivity Audit",
+    description:
+      "A practical review for industrial and B2B teams that want to find where manual work, scattered reports, messy Excel files, repeated admin tasks, and disconnected workflows are slowing the business down.",
+    resultTitle: "The roadmap shows",
+    resultDescription:
+      "What should be automated, what should be simplified, where AI has real business value, which dashboards are needed, and the safest first implementation step.",
+    items: [
+      "Operational bottlenecks and wasted time",
+      "Repetitive tasks AI can support",
+      "Excel, reporting, and dashboard opportunities",
+      "Quick wins before complex automation",
+      "Recommended tools and workflow changes",
+      "A low-risk first implementation plan"
+    ],
+    fitFor:
+      "Built for operators, managers, founders, and industrial teams in mining, export, logistics, trading, manufacturing, and B2B services.",
+    cta: "Book an AI Workflow Review"
+  },
+  fa: {
+    label: "پیشنهاد اصلی",
+    title: "عارضه‌یابی بهره‌وری با هوش مصنوعی",
+    description:
+      "یک بررسی عملی برای شرکت‌های صنعتی و B2B که می‌خواهند بفهمند کارهای دستی، گزارش‌های پراکنده، فایل‌های اکسل شلوغ، کارهای اداری تکراری و فرایندهای جدا از هم کجا سرعت کسب‌وکار را کم کرده‌اند.",
+    resultTitle: "خروجی نقشه راه",
+    resultDescription:
+      "مشخص می‌شود چه چیزی باید خودکار شود، چه چیزی باید ساده‌تر شود، کجا AI واقعا ارزش تجاری دارد، چه داشبوردهایی لازم است و اولین قدم اجرایی کم‌ریسک چیست.",
+    items: [
+      "گلوگاه‌های عملیاتی و زمان‌های تلف‌شده",
+      "کارهای تکراری قابل بهبود با AI",
+      "فرصت‌های اکسل، گزارش‌گیری و داشبورد",
+      "quick winها قبل از اتوماسیون پیچیده",
+      "پیشنهاد ابزارها و تغییرات فرایندی",
+      "برنامه اولین اجرای کم‌ریسک"
+    ],
+    fitFor:
+      "مناسب برای مدیران، بنیان‌گذاران و تیم‌های صنعتی، معدنی، صادراتی، لجستیک، بازرگانی، تولیدی و خدمات B2B.",
+    cta: "بررسی فرایندهای شرکت"
+  }
+} as const;
+
 export function HowIHelp({ language }: { language: Language }) {
   const t = helpContent[language];
   const isFa = language === "fa";
@@ -144,6 +187,8 @@ export function HowIHelp({ language }: { language: Language }) {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
+            <AuditOffer language={language} />
+
             {t.cards.map((card, index) => (
               <article
                 key={card.title}
@@ -189,6 +234,61 @@ export function HowIHelp({ language }: { language: Language }) {
         </div>
       </Container>
     </section>
+  );
+}
+
+function AuditOffer({ language }: { language: Language }) {
+  const offer = auditOfferContent[language];
+  const isFa = language === "fa";
+
+  return (
+    <article className="relative overflow-hidden rounded-lg border border-blue-100 bg-gradient-to-br from-white via-blue-50/80 to-cyan-50/70 p-5 shadow-premium dark:border-blue-400/20 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950/40 md:col-span-2 md:p-6">
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-transparent" />
+      <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+        <div>
+          <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-md bg-blue-600 text-white shadow-soft dark:bg-blue-500">
+            <ClipboardCheck className="h-5 w-5" />
+          </div>
+          <p className={isFa ? "text-sm font-semibold text-accent" : "text-xs font-semibold uppercase tracking-[0.18em] text-accent"}>
+            {offer.label}
+          </p>
+          <h3 className="mt-2 text-2xl font-semibold tracking-normal text-ink dark:text-white md:text-3xl">
+            {offer.title}
+          </h3>
+          <p className={`mt-4 text-sm text-muted dark:text-slate-300 ${isFa ? "leading-8" : "leading-7"}`}>
+            {offer.description}
+          </p>
+        </div>
+
+        <div className="rounded-lg border border-slate-200 bg-white/76 p-4 dark:border-slate-700/70 dark:bg-slate-950/60">
+          <p className="text-sm font-semibold text-ink dark:text-white">{offer.resultTitle}</p>
+          <p className={`mt-2 text-sm text-muted dark:text-slate-400 ${isFa ? "leading-8" : "leading-7"}`}>
+            {offer.resultDescription}
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            {offer.items.map((item) => (
+              <div key={item} className="flex gap-2 text-sm text-charcoal dark:text-slate-300">
+                <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-cyan-500 dark:text-cyan-300" />
+                <span className={isFa ? "leading-7" : "leading-6"}>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700/70 dark:bg-slate-900/70 lg:grid-cols-[1fr_auto] lg:items-center">
+        <p className={`text-sm text-charcoal dark:text-slate-300 ${isFa ? "leading-8" : "leading-7"}`}>
+          {offer.fitFor}
+        </p>
+        <a
+          href="#contact"
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-navy px-4 py-3 text-sm font-semibold text-white transition hover:bg-charcoal dark:bg-white dark:text-navy dark:hover:bg-blue-50"
+        >
+          <Route className="h-4 w-4" />
+          {offer.cta}
+        </a>
+      </div>
+    </article>
   );
 }
 

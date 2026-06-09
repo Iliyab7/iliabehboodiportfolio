@@ -13,6 +13,11 @@ export const metadata: Metadata = {
     "Workflow Automation",
     "Business Process Automation",
     "KPI Dashboard",
+    "KPI Dashboards",
+    "AI Business Automation",
+    "AI Reporting Systems",
+    "Operational Dashboards",
+    "B2B Digital Systems",
     "Google Apps Script",
     "n8n",
     "B2B Marketing",
@@ -21,14 +26,14 @@ export const metadata: Metadata = {
     "Management Reporting"
   ],
   alternates: {
-    canonical: "https://iliabehboodi.com"
+    canonical: "https://iliabehboodiportfolio.vercel.app"
   },
   openGraph: {
     title: "Ilia Behboodi | AI Automation & Digital Systems Strategist",
     description:
       "Workflow automation, dashboards, SEO-driven websites, AI-assisted reporting systems, and digital infrastructure for B2B and industrial businesses.",
     type: "website",
-    url: "https://iliabehboodi.com",
+    url: "https://iliabehboodiportfolio.vercel.app",
     siteName: "Ilia Behboodi Portfolio"
   },
   twitter: {

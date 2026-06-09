@@ -5,7 +5,8 @@ const visualBySlug: Record<CaseStudy["slug"], CaseStudy["visual"]> = {
   "mahed-group-website": "website",
   "shayan-quarry-website": "quarry",
   "management-ai-chatbot": "chatbot",
-  "export-logistics-container-planning": "logistics"
+  "export-logistics-container-planning": "logistics",
+  "international-academy-management-system": "academy"
 };
 
 export function ProjectVisual({ type, slug }: { type?: CaseStudy["visual"]; slug?: CaseStudy["slug"] }) {
@@ -19,6 +20,7 @@ export function ProjectVisual({ type, slug }: { type?: CaseStudy["visual"]; slug
       {visualType === "quarry" ? <QuarryVisual /> : null}
       {visualType === "chatbot" ? <ChatbotVisual /> : null}
       {visualType === "logistics" ? <LogisticsVisual /> : null}
+      {visualType === "academy" ? <AcademyVisual /> : null}
     </div>
   );
 }
@@ -120,6 +122,49 @@ function LogisticsVisual() {
           }`}
         />
       ))}
+    </div>
+  );
+}
+
+function AcademyVisual() {
+  return (
+    <div className="relative grid gap-3">
+      <div className="rounded-md border border-slate-200 bg-white/90 p-3 dark:border-slate-700 dark:bg-slate-900">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <div>
+            <div className="h-2.5 w-24 rounded bg-blue-500/80" />
+            <div className="mt-2 h-2 w-16 rounded bg-slate-200 dark:bg-slate-700" />
+          </div>
+          <div className="rounded bg-cyan-50 px-2 py-1 text-[10px] font-semibold text-accent dark:bg-cyan-400/10 dark:text-cyan-200">
+            CRM
+          </div>
+        </div>
+        <div className="grid grid-cols-4 gap-2">
+          {["Lead", "Class", "Teacher", "Pay"].map((item) => (
+            <div key={item} className="rounded bg-slate-50 p-2 text-center text-[10px] font-semibold text-muted dark:bg-slate-800 dark:text-slate-300">
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="grid grid-cols-7 gap-1.5">
+        {Array.from({ length: 21 }).map((_, index) => (
+          <div
+            key={index}
+            className={`h-6 rounded ${index % 5 === 0 ? "bg-blue-500/80" : index % 4 === 0 ? "bg-cyan-400/70" : "bg-white/90 dark:bg-slate-900"}`}
+          />
+        ))}
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        {["Survey", "Obs.", "Report"].map((item, index) => (
+          <div key={item} className="rounded-md border border-blue-100 bg-white/90 p-3 dark:border-blue-400/20 dark:bg-slate-900">
+            <p className="text-[10px] font-semibold text-muted dark:text-slate-400">{item}</p>
+            <div className="mt-2 h-1.5 rounded bg-slate-100 dark:bg-slate-800">
+              <div className="h-1.5 rounded bg-gradient-to-r from-blue-600 to-cyan-400" style={{ width: `${72 + index * 8}%` }} />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
