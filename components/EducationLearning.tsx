@@ -1,6 +1,7 @@
 "use client";
 
-import { BookOpen, GraduationCap } from "lucide-react";
+import Image from "next/image";
+import { Award, BookOpen, ExternalLink, FileText, GraduationCap } from "lucide-react";
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -41,6 +42,50 @@ const content = {
 
 export function EducationLearning({ language }: { language: Language }) {
   const t = content[language];
+  const certificates =
+    language === "fa"
+      ? {
+          eyebrow: "مدارک",
+          title: "مدارک و گواهی نامه ها",
+          view: "مشاهده مدرک",
+          items: [
+            {
+              title: "CS50's Introduction to Programming with Python",
+              issuer: "Harvard University / CS50",
+              year: "2026",
+              href: "/certificates/cs50-python-certificate.jpg",
+              image: "/certificates/cs50-python-certificate.jpg"
+            },
+            {
+              title: "CS50's Introduction to Artificial Intelligence with Python",
+              issuer: "Harvard University / CS50",
+              year: "2026",
+              href: "/certificates/cs50-ai-certificate.png",
+              image: "/certificates/cs50-ai-certificate.png"
+            }
+          ]
+        }
+      : {
+          eyebrow: "Credentials",
+          title: "Certificates & Credentials",
+          view: "View certificate",
+          items: [
+            {
+              title: "CS50's Introduction to Programming with Python",
+              issuer: "Harvard University / CS50",
+              year: "2026",
+              href: "/certificates/cs50-python-certificate.jpg",
+              image: "/certificates/cs50-python-certificate.jpg"
+            },
+            {
+              title: "CS50's Introduction to Artificial Intelligence with Python",
+              issuer: "Harvard University / CS50",
+              year: "2026",
+              href: "/certificates/cs50-ai-certificate.png",
+              image: "/certificates/cs50-ai-certificate.png"
+            }
+          ]
+        };
 
   return (
     <section className="section-surface border-y border-slate-200 py-12 dark:border-slate-800 md:py-20 lg:py-28">
@@ -107,6 +152,64 @@ export function EducationLearning({ language }: { language: Language }) {
             </details>
           </Reveal>
         </div>
+        <Reveal delay={0.08}>
+          <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50/80 p-4 dark:border-slate-700/70 dark:bg-slate-950/40 md:mt-8 md:p-5">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold text-accent dark:text-blue-200">{certificates.eyebrow}</p>
+                <h3 className="mt-1 text-xl font-semibold text-ink dark:text-white md:text-2xl">
+                  {certificates.title}
+                </h3>
+              </div>
+              <Award className="h-7 w-7 text-accent dark:text-blue-200" />
+            </div>
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {certificates.items.map((certificate) => (
+                <article key={certificate.href} className="card-premium overflow-hidden rounded-lg">
+                  <a
+                    href={certificate.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block"
+                    aria-label={`${certificates.view}: ${certificate.title}`}
+                  >
+                    {certificate.image ? (
+                      <div className="relative aspect-[16/10] overflow-hidden bg-white">
+                        <Image
+                          src={certificate.image}
+                          alt={certificate.title}
+                          fill
+                          sizes="(min-width: 768px) 50vw, 100vw"
+                          className="object-cover object-left-top transition duration-500 group-hover:scale-[1.02]"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex aspect-[16/10] items-center justify-center bg-blue-50 text-accent dark:bg-blue-400/10 dark:text-blue-200">
+                        <FileText className="h-14 w-14" />
+                      </div>
+                    )}
+                    <div className="p-4 md:p-5">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <h4 className="text-base font-semibold leading-7 text-ink dark:text-white">
+                            {certificate.title}
+                          </h4>
+                          <p className="mt-1 text-sm text-muted dark:text-slate-300">
+                            {certificate.issuer} · {certificate.year}
+                          </p>
+                        </div>
+                        <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-accent transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-blue-200" />
+                      </div>
+                      <p className="mt-4 text-sm font-semibold text-accent dark:text-blue-200">
+                        {certificates.view}
+                      </p>
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );
