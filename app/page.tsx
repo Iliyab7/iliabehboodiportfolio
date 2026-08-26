@@ -63,11 +63,16 @@ export default function Home() {
   const projectsSection = isFa
     ? {
         ...t.projectsSection,
-        title: "نمونه‌هایی از تبدیل کارهای دستی و پراکنده به سیستم‌های شفاف‌تر.",
+        title: "پروژه‌ها را ببینید؛ نه اینکه فقط درباره‌شان بخوانید.",
         description:
-          "این پروژه‌ها همان منطق عارضه‌یابی بهره‌وری را نشان می‌دهند: پیدا کردن گلوگاه دستی، ساختاردهی داده، خودکارسازی کارهای تکراری و تبدیل گزارش‌ها به تصمیم‌گیری سریع‌تر مدیریتی."
+          "هر پروژه با یک نمای بصری از محصول واقعی، مسئله کسب‌وکار و سیستم ساخته‌شده معرفی شده است؛ از پلتفرم زنده هوشمندی بازار ماهد تا اتوماسیون عملیات، گزارش‌گیری و لجستیک."
       }
-    : t.projectsSection;
+    : {
+        ...t.projectsSection,
+        title: "See the systems, not just the project descriptions.",
+        description:
+          "Each case study pairs a product-style visual preview with the business problem and the system I built—from MAHED's live market-intelligence platform to operations, reporting, and logistics automation."
+      };
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("theme") as Theme | null;
@@ -305,14 +310,11 @@ export default function Home() {
             title={projectsSection.title}
             description={projectsSection.description}
           />
-          <p className="mb-3 text-xs font-semibold text-muted dark:text-slate-400 lg:hidden">
-            {isFa ? "پروژه‌ها را افقی مرور کنید" : "Swipe projects"}
-          </p>
-          <div className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-2 md:snap-none md:overflow-visible md:pb-0 lg:grid-cols-12 lg:gap-6">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-12 lg:gap-6">
             {projects.map((project, index) => (
               <div
                 key={project.title}
-                className={`min-w-[85vw] snap-start md:w-auto md:min-w-0 ${
+                className={`w-full min-w-0 ${
                   index === 0
                     ? "md:col-span-2 lg:col-span-7"
                     : index === 1
@@ -321,7 +323,7 @@ export default function Home() {
                 }`}
               >
                 <Reveal delay={index * 0.04}>
-                  <ProjectCard project={project} labels={t.projectsSection.labels} />
+                  <ProjectCard project={project} labels={t.projectsSection.labels} language={language} />
                 </Reveal>
               </div>
             ))}

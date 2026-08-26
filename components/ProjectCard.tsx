@@ -6,6 +6,7 @@ import { ProjectVisual } from "@/components/ProjectVisual";
 
 type ProjectCardProps = {
   project: CaseStudy;
+  language: "en" | "fa";
   labels: {
     problem: string;
     solution: string;
@@ -15,39 +16,47 @@ type ProjectCardProps = {
   };
 };
 
-export function ProjectCard({ project, labels }: ProjectCardProps) {
+export function ProjectCard({ project, labels, language }: ProjectCardProps) {
   return (
     <>
-    <article className="card-premium card-premium-hover group relative flex h-full flex-col overflow-hidden rounded-lg p-4 md:hidden">
-      <div className="flex flex-wrap items-center justify-between gap-2">
+    <article className="card-premium group relative flex h-full flex-col overflow-hidden rounded-2xl p-3.5 md:hidden">
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-orange-400" />
+      <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
         <Badge>{project.category}</Badge>
-        <Link
-          href={`/projects/${project.slug}`}
-          className="inline-flex items-center gap-1 text-xs font-semibold text-accent"
-        >
-          {labels.caseStudy}
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </Link>
+        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-300">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          {language === "fa" ? "نمای محصول" : "Product view"}
+        </span>
       </div>
-      <div className="mt-4">
-        <ProjectVisual type={project.visual} />
+      <div className="mt-3">
+        <ProjectVisual type={project.visual} language={language} />
       </div>
-      <h3 className="mt-4 text-xl font-semibold tracking-normal text-ink dark:text-white">{project.title}</h3>
-      <p className="mt-3 mobile-clamp-2 text-sm leading-7 muted-copy">{project.summary}</p>
-      <ul className="mt-4 space-y-2">
+      <h3 className="mt-4 text-xl font-bold leading-8 tracking-normal text-ink dark:text-white">{project.title}</h3>
+      <p className="mt-2 line-clamp-3 text-sm leading-7 muted-copy">{project.summary}</p>
+      <ul className="mt-4 grid gap-2 rounded-xl bg-slate-50 p-3 dark:bg-slate-950/55">
         {project.outcomes.slice(0, 2).map((outcome) => (
-          <li key={outcome} className="flex gap-2 text-xs leading-6 muted-copy">
-            <CheckCircle2 className="mt-1 h-3.5 w-3.5 shrink-0 text-accent" />
+          <li key={outcome} className="flex gap-2 text-xs leading-5 text-charcoal dark:text-slate-200">
+            <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
             <span>{outcome}</span>
           </li>
         ))}
       </ul>
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-1.5">
         {project.tools.slice(0, 3).map((tool) => (
-          <span key={tool} className="rounded-md bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-charcoal dark:bg-slate-800 dark:text-slate-200">
+          <span key={tool} className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-semibold text-charcoal dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
             {tool}
           </span>
         ))}
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-2 border-t border-slate-200 pt-4 dark:border-slate-700/70">
+        {project.link ? (
+          <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-1 rounded-xl bg-blue-600 px-3 text-xs font-bold text-white shadow-sm">
+            {labels.visit}<ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+        ) : null}
+        <Link href={`/projects/${project.slug}`} className={`inline-flex min-h-11 items-center justify-center gap-1 rounded-xl border border-slate-200 px-3 text-xs font-bold text-charcoal dark:border-slate-700 dark:text-slate-200 ${project.link ? "" : "col-span-2"}`}>
+          {labels.caseStudy}<ArrowUpRight className="h-3.5 w-3.5" />
+        </Link>
       </div>
     </article>
 
@@ -64,7 +73,7 @@ export function ProjectCard({ project, labels }: ProjectCardProps) {
         </Link>
       </div>
       <div className="mt-5">
-        <ProjectVisual type={project.visual} />
+        <ProjectVisual type={project.visual} language={language} />
       </div>
       <div className="mt-4 flex flex-wrap items-center gap-3">
         {project.link ? (
