@@ -11,11 +11,45 @@ export type CaseStudy = {
   process: readonly string[];
   impactMetrics: readonly { label: string; value: string }[];
   link?: string;
-  visual: "mining" | "website" | "quarry" | "chatbot" | "logistics" | "academy";
+  visual: "lead-platform" | "mining" | "website" | "quarry" | "chatbot" | "logistics" | "academy";
 };
 
 export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
   en: [
+    {
+      slug: "mahed-lead-generation-platform",
+      title: "MAHED Market Intelligence & Lead Generation Platform",
+      category: "Live SaaS / Market Intelligence / Sales Operations",
+      summary:
+        "A live, team-ready platform that brings market discovery, public-business lead collection, qualification, reporting, and sales follow-up into one shared workspace.",
+      problem:
+        "Market research and lead generation were fragmented across map searches, files, manual checks, separate reports, and person-dependent follow-up.",
+      solution:
+        "Designed and built an end-to-end platform that structures searches, consolidates company and contact data, preserves source evidence, supports human review, creates actionable reports, and gives the team a shared operational view.",
+      whatIBuilt: [
+        "Shared lead bank with company, branch, contact, and source context",
+        "Structured market-search workflow across supported public sources",
+        "Human-reviewed qualification, duplicate handling, and lead lifecycle",
+        "Configurable report builder with versioned operational exports",
+        "Team workspace, access controls, job tracking, and recovery states",
+        "Persian RTL product experience plus a live public product website"
+      ],
+      tools: ["Next.js", "React", "TypeScript", "Python", "Supabase", "PostgreSQL", "ExcelJS", "Product Architecture"],
+      outcomes: [
+        "Turned scattered lead research into a repeatable operating system",
+        "Created one shared view for research, sales, and management",
+        "Kept source evidence and human review visible in the workflow",
+        "Delivered a live product experience ready for team use"
+      ],
+      process: ["Map the research workflow", "Design the data model", "Build search and lead operations", "Add reporting and controls", "Ship and validate the live platform"],
+      impactMetrics: [
+        { label: "Product status", value: "Live" },
+        { label: "Workspace", value: "Shared" },
+        { label: "Workflow", value: "End-to-end" }
+      ],
+      link: "https://mahed-platform.vercel.app/",
+      visual: "lead-platform"
+    },
     {
       slug: "international-academy-management-system",
       title: "International Academy Management System",
@@ -212,6 +246,40 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
     }
   ],
   fa: [
+    {
+      slug: "mahed-lead-generation-platform",
+      title: "پلتفرم هوشمندی بازار و لید جنریشن ماهد",
+      category: "پلتفرم زنده / هوشمندی بازار / عملیات فروش",
+      summary:
+        "یک پلتفرم زنده و تیم‌محور که کشف بازار، جمع‌آوری لیدهای کسب‌وکاری عمومی، ارزیابی، گزارش‌سازی و پیگیری فروش را در یک فضای کاری مشترک کنار هم قرار می‌دهد.",
+      problem:
+        "تحقیق بازار و لید جنریشن بین جست‌وجوهای نقشه، فایل‌های پراکنده، بررسی‌های دستی، گزارش‌های جدا و پیگیری وابسته به افراد تقسیم شده بود.",
+      solution:
+        "یک پلتفرم سرتاسری طراحی و ساخته شد که جست‌وجوها را ساختار می‌دهد، داده شرکت و تماس را یکپارچه می‌کند، شواهد منبع را نگه می‌دارد، بررسی انسانی را وارد جریان می‌کند و گزارش‌های قابل‌اقدام و نمای مشترک تیمی می‌سازد.",
+      whatIBuilt: [
+        "بانک لید مشترک همراه با اطلاعات شرکت، شعبه، تماس و منبع",
+        "جریان ساختاریافته جست‌وجوی بازار در منابع عمومی پشتیبانی‌شده",
+        "ارزیابی انسانی، مدیریت تکراری‌ها و چرخه عمر لید",
+        "گزارش‌ساز قابل تنظیم با خروجی‌های عملیاتی نسخه‌بندی‌شده",
+        "فضای کاری تیمی، کنترل دسترسی، رهگیری کارها و وضعیت‌های بازیابی",
+        "تجربه محصول فارسی RTL به‌همراه وب‌سایت معرفی زنده"
+      ],
+      tools: ["Next.js", "React", "TypeScript", "Python", "Supabase", "PostgreSQL", "ExcelJS", "معماری محصول"],
+      outcomes: [
+        "تبدیل تحقیق پراکنده لید به یک سیستم عملیاتی قابل تکرار",
+        "ایجاد یک نمای مشترک برای تحقیق، فروش و مدیریت",
+        "حفظ شواهد منبع و نقش بررسی انسانی در جریان کار",
+        "تحویل تجربه محصول زنده و آماده استفاده تیمی"
+      ],
+      process: ["مدل‌سازی جریان تحقیق", "طراحی مدل داده", "ساخت عملیات جست‌وجو و لید", "افزودن گزارش و کنترل‌ها", "انتشار و اعتبارسنجی پلتفرم زنده"],
+      impactMetrics: [
+        { label: "وضعیت محصول", value: "زنده" },
+        { label: "فضای کاری", value: "مشترک" },
+        { label: "جریان کار", value: "سرتاسری" }
+      ],
+      link: "https://mahed-platform.vercel.app/",
+      visual: "lead-platform"
+    },
     {
       slug: "international-academy-management-system",
       title: "سیستم مدیریت آموزشگاه بین‌المللی",

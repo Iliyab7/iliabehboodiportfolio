@@ -137,7 +137,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <ProjectVisual slug={project.slug} />
+            <ProjectVisual slug={project.slug} language={language} />
           </Reveal>
         </Container>
       </section>
