@@ -5,3 +5,26 @@ node_modules
 .vercel
 dev-server.log
 dev-server.err
+
+# Portfolio migration: host identities and business data stay private
+.env
+.env.*
+!.env.example
+!.env.sample
+**/local.env
+**/.clasp.json
+**/.clasp.json.*
+**/.vercel/
+**/node_modules/
+**/.venv/
+**/.codex_deps/
+**/.next/
+**/__pycache__/
+**/private-storage/
+**/browser_profile/
+**/uploads/
+**/backups/
+.runtime/
+hosts.local.json
+*.bundle
+*.log

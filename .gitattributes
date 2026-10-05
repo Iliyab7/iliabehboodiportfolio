@@ -1,0 +1,9 @@
+# Preserve provider migration source checksums and binary assets
+*.sql -text
+*.gs -text
+*.bin -text
+*.png -text
+*.jpg -text
+*.jpeg -text
+*.webp -text
+*.woff2 -text
