@@ -1,0 +1,37 @@
+name: Update Second Brain
+on:
+  push:
+  pull_request_target:
+    types: [opened, reopened, synchronize, closed, edited, ready_for_review]
+  issues:
+    types: [opened, edited, closed, reopened, labeled, unlabeled]
+  issue_comment:
+    types: [created, edited, deleted]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  release:
+    types: [published, edited, deleted]
+  create:
+  delete:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  notify:
+    if: vars.SECOND_BRAIN_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify the private knowledge repository
+        env:
+          GH_TOKEN: ${{ secrets.SECOND_BRAIN_DISPATCH_TOKEN }}
+          SOURCE_REPOSITORY: ${{ github.repository }}
+          SOURCE_EVENT: ${{ github.event_name }}
+          SOURCE_SHA: ${{ github.sha }}
+          SOURCE_REF: ${{ github.ref }}
+        run: |
+          test -n "$GH_TOKEN" || { echo '::error::SECOND_BRAIN_DISPATCH_TOKEN is required'; exit 1; }
+          jq --arg repository "$SOURCE_REPOSITORY" --arg event "$SOURCE_EVENT" --arg sha "$SOURCE_SHA" --arg ref "$SOURCE_REF" --arg run_id "$GITHUB_RUN_ID" --arg occurred_at "$(date -u +%FT%TZ)" \
+            '{event_type: "second-brain-update", client_payload: {repository: $repository, event: $event, sha: $sha, ref: $ref, before: (.before // ""), after: (.after // ""), action: (.action // ""), number: ((.number // .issue.number // "") | tostring), run_id: $run_id, occurred_at: $occurred_at}}' "$GITHUB_EVENT_PATH" \
+            > "$RUNNER_TEMP/second-brain-dispatch.json"
+          gh api --method POST repos/Iliyab7/portfolio-knowledge-vault/dispatches --input "$RUNNER_TEMP/second-brain-dispatch.json"
+
