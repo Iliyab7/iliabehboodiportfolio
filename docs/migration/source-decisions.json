@@ -1,0 +1,12 @@
+{
+  "run_id": "20261005-initial-portfolio",
+  "project_id": "PRJ-016",
+  "decisions": [
+    {
+      "source_alias": "source-1",
+      "role": "code",
+      "decision": "canonical copied with SHA256 verification"
+    }
+  ],
+  "originals_retained": true
+}

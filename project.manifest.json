@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "project_id": "PRJ-016",
+  "company_id": "personal",
+  "repository": "Iliyab7/iliabehboodiportfolio",
+  "governance_repository": "Iliyab7/workspace-governance",
+  "migration_run_id": "20261005-initial-portfolio",
+  "data_root_alias": "PRJ-016",
+  "integration_policy": "preserve exact provider identities; maintenance never reconnects services or changes schema, credentials, triggers or domains",
+  "shared_tools": {
+    "repository": "Iliyab7/workspace-devtools",
+    "revision": "5a1bc8f77fadf1fc81f0e6b233a11d040e5d5220",
+    "usage": "development-only; no implicit runtime or business-data sharing"
+  },
+  "entrypoints": [
+    {
+      "path": "package.json",
+      "kind": "source-or-native-runtime-contract"
+    }
+  ],
+  "dependency_contracts": [],
+  "production_cutover": "not-applied"
+}
