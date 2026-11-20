@@ -133,15 +133,15 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
       problem:
         "The company needed a stronger digital presence for industrial credibility and international visibility.",
       solution:
-        "Designed and developed a professional B2B website with SEO-focused structure, multilingual content planning, content architecture, and improved brand presentation.",
+        "Built a multilingual B2B site with pre-rendered pages for search and direct paths from quarry and product information to inquiries.",
       whatIBuilt: [
         "B2B website structure",
-        "SEO-focused page architecture",
+        "Pre-rendered pages with a multilingual SEO structure",
         "Industrial content planning",
         "Multilingual content framework",
         "Credibility-first brand presentation"
       ],
-      tools: ["WordPress", "SEO", "Content Strategy", "UI/UX", "Multilingual Content"],
+      tools: ["React", "TypeScript", "Vite", "Multilingual SEO"],
       outcomes: [
         "Improved digital credibility",
         "Structured industrial content",
@@ -165,7 +165,7 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
         "A dedicated quarry website built to create a focused digital identity for Shayan Quarry, improve product presentation, and support B2B/export communication.",
       problem: "The quarry needed a dedicated digital identity and clearer product presentation.",
       solution:
-        "Created a focused quarry website for brand presentation, product positioning, SEO-oriented pages, and B2B trust-building.",
+        "Built a dedicated quarry site with structured product content and pre-rendered routes for search and direct navigation.",
       whatIBuilt: [
         "Dedicated quarry website",
         "Product presentation pages",
@@ -173,7 +173,7 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
         "SEO-oriented content layout",
         "Export communication foundation"
       ],
-      tools: ["Website Design", "SEO", "Content Architecture", "Brand Presentation"],
+      tools: ["React", "TypeScript", "Vite", "Technical SEO"],
       outcomes: [
         "Created dedicated quarry presence",
         "Improved product presentation",
@@ -365,15 +365,15 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
       problem:
         "شرکت برای افزایش اعتبار صنعتی، حضور دیجیتال حرفه‌ای‌تر و دیده‌شدن در بازارهای داخلی و بین‌المللی به وب‌سایتی قوی‌تر نیاز داشت.",
       solution:
-        "یک وب‌سایت حرفه‌ای B2B با ساختار سئومحور، برنامه‌ریزی محتوای چندزبانه، معماری محتوای صنعتی و ارائه بهتر برند طراحی و توسعه داده شد.",
+        "یک وب‌سایت چندزبانهٔ B2B با صفحات ازپیش‌ساخته برای جست‌وجو و مسیر مستقیم از معرفی معدن و محصول تا ارسال درخواست ساختم.",
       whatIBuilt: [
         "ساختار وب‌سایت B2B",
-        "معماری صفحات سئومحور",
+        "صفحات ازپیش‌ساخته با ساختار سئوی چندزبانه",
         "برنامه‌ریزی محتوای صنعتی",
         "چارچوب محتوای چندزبانه",
         "ارائه برند با تمرکز بر اعتماد"
       ],
-      tools: ["WordPress", "SEO", "استراتژی محتوا", "UI/UX", "محتوای چندزبانه"],
+      tools: ["React", "TypeScript", "Vite", "سئوی چندزبانه"],
       outcomes: [
         "افزایش اعتبار دیجیتال برند",
         "ساختاردهی محتوای صنعتی",
@@ -398,7 +398,7 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
       problem:
         "معدن شایان به یک هویت دیجیتال مستقل و معرفی حرفه‌ای‌تر محصولات و ظرفیت‌های خود نیاز داشت.",
       solution:
-        "یک وب‌سایت اختصاصی برای معرفی معدن، جایگاه‌سازی محصول، صفحات سئومحور و تقویت اعتماد در ارتباطات B2B طراحی شد.",
+        "برای معدن وب‌سایتی مستقل با محتوای ساختاریافتهٔ محصولات و مسیرهای ازپیش‌ساخته برای جست‌وجو و مراجعهٔ مستقیم ساختم.",
       whatIBuilt: [
         "وب‌سایت اختصاصی معدن",
         "صفحات معرفی محصول",
@@ -406,7 +406,7 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
         "چیدمان محتوای سئومحور",
         "زیرساخت ارتباطات صادراتی"
       ],
-      tools: ["طراحی وب‌سایت", "SEO", "معماری محتوا", "ارائه برند"],
+      tools: ["React", "TypeScript", "Vite", "سئوی فنی"],
       outcomes: [
         "ایجاد حضور دیجیتال مستقل برای معدن",
         "بهبود معرفی محصول و ظرفیت‌ها",
