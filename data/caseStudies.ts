@@ -1,4 +1,12 @@
 import { agentCaseStudies } from "./agentCaseStudies";
+import { selectedCaseStudies } from "./selectedCaseStudies";
+
+export type Diagram = {
+  kind: "pipeline" | "board" | "ledger";
+  title: string;
+  steps: readonly [string, string, string];
+  example: readonly [string, string];
+};
 
 export type CaseStudy = {
   slug: string;
@@ -14,14 +22,16 @@ export type CaseStudy = {
   impactMetrics: readonly { label: string; value: string }[];
   link?: string;
   status?: string;
+  verification?: string;
   source?: string;
   evidence?: readonly { label: string; href: string }[];
-  visual: "lead-platform" | "mining" | "website" | "quarry" | "chatbot" | "logistics" | "academy" | "wellbeing" | "library";
+  visual: "lead-platform" | "mining" | "website" | "quarry" | "chatbot" | "logistics" | "academy" | "wellbeing" | "library" | Diagram;
 };
 
 export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
   en: [
     ...agentCaseStudies.en,
+    ...selectedCaseStudies.en,
     {
       slug: "mahed-lead-generation-platform",
       title: "MAHED Market Intelligence & Lead Generation Platform",
@@ -253,6 +263,7 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
   ],
   fa: [
     ...agentCaseStudies.fa,
+    ...selectedCaseStudies.fa,
     {
       slug: "mahed-lead-generation-platform",
       title: "پلتفرم هوشمندی بازار و لید جنریشن ماهد",

@@ -1,10 +1,15 @@
 import { BookOpen, CheckCircle2, ClipboardCheck, Database, FileText, HeartPulse, Users } from "lucide-react";
+import { CaseStudyDiagram } from "@/components/CaseStudyDiagram";
 import type { CaseStudy } from "@/data/caseStudies";
 
 type Language = "en" | "fa";
 
 export function ProjectVisual({ type: visualType, language }: { type: CaseStudy["visual"]; language: Language }) {
   const isFa = language === "fa";
+
+  if (typeof visualType === "object") {
+    return <CaseStudyDiagram diagram={visualType} language={language} />;
+  }
 
   if (visualType === "wellbeing" || visualType === "library") {
     return <AgentWorkflowVisual type={visualType} language={language} />;

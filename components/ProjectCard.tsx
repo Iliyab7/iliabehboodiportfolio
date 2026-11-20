@@ -17,6 +17,27 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project, labels, language }: ProjectCardProps) {
+  if (typeof project.visual === "object") {
+    return (
+      <article className="card-premium card-premium-hover flex h-full flex-col rounded-xl p-4 md:p-5">
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge>{project.category}</Badge>
+          <span className="text-xs font-semibold leading-5 text-muted dark:text-slate-300">{project.status}</span>
+        </div>
+        <h4 className="mt-3 text-xl font-semibold leading-8 text-ink dark:text-white">{project.title}</h4>
+        <p className="mt-2 text-sm leading-7 muted-copy">{project.summary}</p>
+        <div className="mt-4">
+          <ProjectVisual type={project.visual} language={language} />
+        </div>
+        <div className="mt-auto pt-4">
+          <Link href={`/projects/${project.slug}`} className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-sm font-semibold text-accent hover:underline dark:text-blue-200" aria-label={`${labels.caseStudy} · ${project.title}`}>
+            {labels.caseStudy}<ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </div>
+      </article>
+    );
+  }
+
   const externalLink = project.source ?? project.link;
   const externalLabel = project.source ? (language === "fa" ? "مشاهده در گیت‌هاب" : "View on GitHub") : labels.visit;
 
