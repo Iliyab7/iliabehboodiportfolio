@@ -61,6 +61,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
   }
 
   const externalLink = project.source ?? project.link;
+  const verification = project.verification;
 
   return (
     <main dir={isFa ? "rtl" : "ltr"} className="min-h-screen bg-offwhite text-ink dark:bg-[#050a12] dark:text-slate-100">
@@ -194,15 +195,26 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
               </div>
             </div>
             <div>
-              <SectionTitle title={project.source ? (isFa ? "وضعیت و خروجی‌ها" : "Status and outputs") : (isFa ? "اثر کسب‌وکار" : "Business Impact")} />
-              <div className="mt-5 grid gap-4 sm:grid-cols-3">
-                {project.impactMetrics.map((metric) => (
-                  <div key={metric.label} className="card-premium rounded-lg p-5">
-                    <p className="text-2xl font-semibold text-ink dark:text-white">{metric.value}</p>
-                    <p className="mt-2 text-sm muted-copy">{metric.label}</p>
+              {verification ? (
+                <>
+                  <SectionTitle title={isFa ? "شواهد و حدود بررسی" : "Verification and scope"} />
+                  <p className="mt-5 rounded-lg border border-slate-200 p-5 text-sm leading-7 muted-copy dark:border-slate-700">
+                    {verification}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <SectionTitle title={project.source ? (isFa ? "وضعیت و خروجی‌ها" : "Status and outputs") : (isFa ? "اثر کسب‌وکار" : "Business Impact")} />
+                  <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                    {project.impactMetrics.map((metric) => (
+                      <div key={metric.label} className="card-premium rounded-lg p-5">
+                        <p className="text-2xl font-semibold text-ink dark:text-white">{metric.value}</p>
+                        <p className="mt-2 text-sm muted-copy">{metric.label}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </>
+              )}
             </div>
           </div>
         </Container>

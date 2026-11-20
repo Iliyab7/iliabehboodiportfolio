@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "id": "20261120T130736Z-expand-private-project-case-studies",
+  "repository": "Iliyab7/iliabehboodiportfolio",
+  "occurred_at": "2026-11-20T13:07:36Z",
+  "title": "Expand the portfolio with anonymized project case studies",
+  "summary": "Reviewed implementation and acceptance documentation and translated selected work into public-safe bilingual case studies.",
+  "outcome": "Added 12 studies across editorial and document systems, engineering delivery, sales, finance, inventory, commerce and booking. Each includes an original schematic with a fictional example.",
+  "status": "implemented",
+  "decisions": [
+    "Write the public cases from scratch and omit private links and real records.",
+    "Present pilot, local, release-candidate and host-check evidence at its documented scope.",
+    "Provide in-page navigation for five project collections."
+  ],
+  "blockers": [],
+  "next_actions": [
+    "Verify the 21 project routes and browser diagrams after the main-branch Firebase release."
+  ],
+  "evidence": [
+    "data/selectedCaseStudies.ts",
+    "components/CaseStudyDiagram.tsx",
+    "data/projectGroups.ts"
+  ]
+}

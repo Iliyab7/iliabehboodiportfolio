@@ -244,16 +244,23 @@ export default function Home() {
             {isFa ? "مخزن‌های عمومی در گیت‌هاب" : "Public repositories on GitHub"}
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
+          <nav aria-label={isFa ? "زمینه‌های پروژه" : "Project categories"} className="mb-8 flex flex-wrap gap-2">
+            {projectGroups.map((group) => (
+              <a key={group.id} href={`#projects-${group.id}`} className="inline-flex min-h-10 items-center rounded-full border border-slate-200 px-3 text-sm font-semibold text-navy hover:border-blue-300 hover:text-accent dark:border-slate-700 dark:text-slate-200">
+                {group.nav[language]}
+              </a>
+            ))}
+          </nav>
           <div className="space-y-12 md:space-y-16">
             {projectGroups.map((group) => (
               <section key={group.id} aria-labelledby={`projects-${group.id}`} className="border-t border-slate-200 pt-7 dark:border-slate-800">
-                <h3 id={`projects-${group.id}`} className="text-2xl font-semibold text-ink dark:text-white">
+                <h3 id={`projects-${group.id}`} className="scroll-mt-24 text-2xl font-semibold text-ink dark:text-white">
                   {group.title[language]}
                 </h3>
                 <p className="mt-2 max-w-3xl text-sm leading-7 muted-copy">{group.summary[language]}</p>
-                <div className={`mt-6 grid gap-5 md:grid-cols-2 lg:gap-6 ${group.slugs.length === 3 ? "lg:grid-cols-3" : ""}`}>
+                <div className={`mt-6 grid gap-5 md:grid-cols-2 lg:gap-6 ${group.slugs.length >= 3 ? "xl:grid-cols-3" : ""}`}>
                   {group.slugs.map((slug) => projectsBySlug.get(slug)).filter((project) => project !== undefined).map((project, index) => (
-                    <Reveal key={project.slug} delay={index * 0.04} className="min-w-0">
+                    <Reveal key={project.slug} delay={index * 0.04} className="h-full min-w-0">
                       <ProjectCard project={project} labels={t.projectsSection.labels} language={language} />
                     </Reveal>
                   ))}
