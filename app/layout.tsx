@@ -4,9 +4,9 @@ import { siteUrl } from "@/data/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ilia Behboodi | AI Automation & Digital Systems Strategist",
+  title: "Ilia Behboodi | AI Agents & Digital Systems",
   description:
-    "Portfolio of Ilia Behboodi, an AI Automation and Digital Systems Strategist building workflow automation, dashboards, SEO-driven websites, AI-assisted reporting systems, and digital infrastructure for B2B and industrial businesses.",
+    "Ilia Behboodi builds AI agents, document libraries, sales and reporting tools, and websites for B2B and industrial operations. Explore project case studies and public GitHub repositories.",
   keywords: [
     "Ilia Behboodi",
     "AI Automation",
@@ -30,18 +30,18 @@ export const metadata: Metadata = {
     canonical: `${siteUrl}/`
   },
   openGraph: {
-    title: "Ilia Behboodi | AI Automation & Digital Systems Strategist",
+    title: "Ilia Behboodi | AI Agents & Digital Systems",
     description:
-      "Workflow automation, dashboards, SEO-driven websites, AI-assisted reporting systems, and digital infrastructure for B2B and industrial businesses.",
+      "Selected case studies in AI agents, knowledge systems, sales workflows, industrial operations, and B2B websites.",
     type: "website",
     url: `${siteUrl}/`,
     siteName: "Ilia Behboodi Portfolio"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ilia Behboodi | AI Automation & Digital Systems Strategist",
+    title: "Ilia Behboodi | AI Agents & Digital Systems",
     description:
-      "AI automation, KPI dashboards, industrial SEO, and digital systems for B2B and industrial businesses."
+      "AI agent starters, document libraries and digital systems for business and industrial teams."
   }
 };
 

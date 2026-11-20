@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
+  Github,
   Instagram,
   Linkedin,
   Mail,
@@ -22,11 +23,11 @@ import { EducationLearning } from "@/components/EducationLearning";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { HeroVisual } from "@/components/HeroVisual";
 import { HowIHelp } from "@/components/HowIHelp";
-import { ImpactDashboard } from "@/components/ImpactDashboard";
 import { LivingSystemOrb } from "@/components/LivingSystemOrb";
 import { MouseGlow } from "@/components/MouseGlow";
 import { ProcessStep } from "@/components/ProcessStep";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectEvidence } from "@/components/ProjectEvidence";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ScrollCompanion } from "@/components/ScrollCompanion";
@@ -35,6 +36,7 @@ import { TechStackItem } from "@/components/TechStackItem";
 import { WorkingPrinciples } from "@/components/WorkingPrinciples";
 import { caseStudies } from "@/data/caseStudies";
 import { contactLinks, content, type Language } from "@/data/content";
+import { githubProfile, projectGroups } from "@/data/projectGroups";
 
 type Theme = "light" | "dark";
 
@@ -45,34 +47,21 @@ export default function Home() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
   const t = content[language];
-  const projects = caseStudies[language];
+  const projectsBySlug = new Map(caseStudies[language].map((project) => [project.slug, project]));
   const isFa = language === "fa";
   const isDark = theme === "dark";
   const headerNav =
     language === "fa"
       ? [
+          { label: "پروژه‌ها", href: "#projects" },
           { label: "کمک به کسب‌وکار", href: "#help" },
           { label: "کاربردهای AI", href: "#ai-use-cases" },
-          { label: "پروژه‌ها", href: "#projects" },
-          { label: "اثرگذاری", href: "#impact" },
+          { label: "شواهد", href: "#impact" },
           { label: "تجربه", href: "#experience" },
           { label: "ابزارها", href: "#tech" },
           { label: "تماس", href: "#contact" }
         ]
       : t.nav.items;
-  const projectsSection = isFa
-    ? {
-        ...t.projectsSection,
-        title: "پروژه‌ها را ببینید؛ نه اینکه فقط درباره‌شان بخوانید.",
-        description:
-          "هر پروژه با یک نمای بصری از محصول واقعی، مسئله کسب‌وکار و سیستم ساخته‌شده معرفی شده است؛ از پلتفرم زنده هوشمندی بازار ماهد تا اتوماسیون عملیات، گزارش‌گیری و لجستیک."
-      }
-    : {
-        ...t.projectsSection,
-        title: "See the systems, not just the project descriptions.",
-        description:
-          "Each case study pairs a product-style visual preview with the business problem and the system I built—from MAHED's live market-intelligence platform to operations, reporting, and logistics automation."
-      };
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("theme") as Theme | null;
@@ -237,6 +226,45 @@ export default function Home() {
       </section>
       <DataDivider />
 
+      <section id="projects" className="border-y border-slate-200 bg-white py-12 transition-colors dark:border-slate-800 dark:bg-[#07111f] md:py-20 lg:py-28">
+        <Container>
+          <SectionHeader
+            lang={language}
+            eyebrow={t.projectsSection.eyebrow}
+            title={t.projectsSection.title}
+            description={t.projectsSection.description}
+          />
+          <a
+            href={githubProfile}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="-mt-4 mb-9 inline-flex min-h-11 items-center gap-2 rounded-md border border-slate-200 px-4 text-sm font-semibold text-accent dark:border-slate-700 dark:text-blue-200"
+          >
+            <Github className="h-4 w-4" aria-hidden="true" />
+            {isFa ? "مخزن‌های عمومی در گیت‌هاب" : "Public repositories on GitHub"}
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+          <div className="space-y-12 md:space-y-16">
+            {projectGroups.map((group) => (
+              <section key={group.id} aria-labelledby={`projects-${group.id}`} className="border-t border-slate-200 pt-7 dark:border-slate-800">
+                <h3 id={`projects-${group.id}`} className="text-2xl font-semibold text-ink dark:text-white">
+                  {group.title[language]}
+                </h3>
+                <p className="mt-2 max-w-3xl text-sm leading-7 muted-copy">{group.summary[language]}</p>
+                <div className={`mt-6 grid gap-5 md:grid-cols-2 lg:gap-6 ${group.slugs.length === 3 ? "lg:grid-cols-3" : ""}`}>
+                  {group.slugs.map((slug) => projectsBySlug.get(slug)).filter((project) => project !== undefined).map((project, index) => (
+                    <Reveal key={project.slug} delay={index * 0.04} className="min-w-0">
+                      <ProjectCard project={project} labels={t.projectsSection.labels} language={language} />
+                    </Reveal>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </Container>
+      </section>
+      <DataDivider />
+
       <HowIHelp language={language} />
       <DataDivider />
 
@@ -302,36 +330,6 @@ export default function Home() {
       </section>
       <DataDivider />
 
-      <section id="projects" className="border-y border-slate-200 bg-white py-12 transition-colors dark:border-slate-800 dark:bg-[#07111f] md:py-20 lg:py-28">
-        <Container>
-          <SectionHeader
-            lang={language}
-            eyebrow={projectsSection.eyebrow}
-            title={projectsSection.title}
-            description={projectsSection.description}
-          />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-12 lg:gap-6">
-            {projects.map((project, index) => (
-              <div
-                key={project.title}
-                className={`w-full min-w-0 ${
-                  index === 0
-                    ? "md:col-span-2 lg:col-span-7"
-                    : index === 1
-                      ? "lg:col-span-5"
-                      : "lg:col-span-4"
-                }`}
-              >
-                <Reveal delay={index * 0.04}>
-                  <ProjectCard project={project} labels={t.projectsSection.labels} language={language} />
-                </Reveal>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-      <DataDivider />
-
       <ExperienceSection language={language} />
       <DataDivider />
 
@@ -370,7 +368,7 @@ export default function Home() {
             description={t.impact.description}
           />
           <Reveal>
-            <ImpactDashboard lang={language} data={t.impact} />
+            <ProjectEvidence items={t.impact.items} />
           </Reveal>
         </Container>
       </section>
@@ -542,9 +540,13 @@ export default function Home() {
               })}
             </div>
           </div>
-          <p className="mt-8 text-sm text-muted dark:text-slate-500">
-            © {new Date().getFullYear()} {t.meta.name}. {t.footer.copyright}
-          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted dark:text-slate-400">
+            <p>© {new Date().getFullYear()} {t.meta.name}. {t.footer.copyright}</p>
+            <a href={githubProfile + "/iliabehboodiportfolio"} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold text-accent dark:text-blue-200">
+              {isFa ? "سورس این وب‌سایت" : "Source for this website"}
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
         </Container>
       </footer>
       <div className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-2 gap-2 rounded-lg border border-slate-200 bg-white/92 p-2 shadow-premium backdrop-blur-xl dark:border-slate-700/70 dark:bg-slate-950/92 md:hidden">

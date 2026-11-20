@@ -60,6 +60,8 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
     );
   }
 
+  const externalLink = project.source ?? project.link;
+
   return (
     <main dir={isFa ? "rtl" : "ltr"} className="min-h-screen bg-offwhite text-ink dark:bg-[#050a12] dark:text-slate-100">
       <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/82 backdrop-blur-xl dark:border-slate-800 dark:bg-[#07111f]/82">
@@ -108,20 +110,20 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
               <p className="mt-6 max-w-3xl text-lg leading-8 text-muted dark:text-slate-400">
                 {project.summary}
               </p>
-              <p className="mt-5 inline-flex rounded-md border border-blue-100 bg-blue-50 px-3 py-2 text-sm font-semibold text-accent dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-200">
-                {isFa
-                  ? "طراحی‌شده بر اساس مسئله‌های واقعی عملیاتی، نه دموهای نمایشی."
-                  : "Built around real operational problems, not theoretical demo flows."}
-              </p>
+              {project.status ? (
+                <p className="mt-5 inline-flex rounded-md border border-blue-100 bg-blue-50 px-3 py-2 text-sm font-semibold text-accent dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-200">
+                  {project.status}
+                </p>
+              ) : null}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                {project.link ? (
+                {externalLink ? (
                   <a
-                    href={project.link}
+                    href={externalLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 rounded-md bg-navy px-5 py-3 text-sm font-semibold text-white transition hover:bg-charcoal dark:bg-blue-500 dark:hover:bg-blue-400"
                   >
-                    {isFa ? "مشاهده وب‌سایت" : "Visit Website"}
+                    {project.source ? (isFa ? "مشاهده در گیت‌هاب" : "View on GitHub") : (isFa ? "مشاهده وب‌سایت" : "Visit Website")}
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
                 ) : null}
@@ -137,7 +139,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <ProjectVisual slug={project.slug} language={language} />
+            <ProjectVisual type={project.visual} language={language} />
           </Reveal>
         </Container>
       </section>
@@ -148,6 +150,20 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             <InfoBlock title={isFa ? "مسئله" : "Problem"} body={project.problem} />
             <InfoBlock title={isFa ? "راه‌حل" : "Solution"} body={project.solution} />
           </div>
+          {project.evidence ? (
+            <div className="mt-9">
+              <SectionTitle title={isFa ? "مستندات و شواهد پروژه" : "Project documentation and evidence"} />
+              <ul className="mt-4 flex flex-wrap gap-3">
+                {project.evidence.map(({ label, href }) => (
+                  <li key={href}>
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-md border border-slate-200 px-4 text-sm font-semibold text-accent dark:border-slate-700 dark:text-blue-200">
+                      {label}<ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </Container>
       </section>
 
@@ -178,7 +194,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
               </div>
             </div>
             <div>
-              <SectionTitle title={isFa ? "اثر کسب‌وکار" : "Business Impact"} />
+              <SectionTitle title={project.source ? (isFa ? "وضعیت و خروجی‌ها" : "Status and outputs") : (isFa ? "اثر کسب‌وکار" : "Business Impact")} />
               <div className="mt-5 grid gap-4 sm:grid-cols-3">
                 {project.impactMetrics.map((metric) => (
                   <div key={metric.label} className="card-premium rounded-lg p-5">

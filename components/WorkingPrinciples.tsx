@@ -13,28 +13,28 @@ const content = {
     eyebrow: "How I Work",
     title: "How I Work",
     description:
-      "My work is built around systems thinking, practical AI adoption, clear documentation, and turning business problems into usable digital workflows.",
+      "My work makes source evidence, quality checks and handoff part of the workflow.",
     cards: [
       ["Systems Thinking", "Seeing how sales, operations, logistics, finance, HR, marketing, and management connect inside the business."],
       ["Business-Technology Bridge", "Translating management and operational needs into practical digital, automation, and AI-based solutions."],
-      ["Data-Driven Structure Design", "Designing scalable data structures that support reporting, automation, and better decision-making."],
-      ["Practical AI Adoption", "Using AI to increase speed, reduce errors, improve quality, and support decisions, not just to show technology."],
+      ["State that carries forward", "Keep sources, decisions and open work in a shared record so a team or agent can resume from the last verified step."],
+      ["Review before delivery", "Use separate review and acceptance checks where an agent prepares records, translations or reports."],
       ["Cross-Functional Work", "Working across sales, production, logistics, finance, HR, marketing, and management teams."],
-      ["Clear Documentation", "Documenting systems clearly for both technical and non-technical teams so workflows can scale."]
+      ["Handoff with a test", "Ship setup instructions, assumptions and sample runs alongside the code so another team can verify and operate it."]
     ]
   },
   fa: {
     eyebrow: "شیوه کاری من",
     title: "شیوه کاری من",
     description:
-      "شیوه کاری من بر پایه تفکر سیستمی، استفاده عملی از AI، مستندسازی شفاف و تبدیل مسئله‌های کسب‌وکار به جریان‌های دیجیتال قابل استفاده است.",
+      "منابع، کنترل کیفیت و تحویل کار را از ابتدا در خود گردش کار طراحی می‌کنم.",
     cards: [
       ["تفکر سیستمی", "دیدن ارتباط بین فروش، عملیات، لجستیک، مالی، منابع انسانی، مارکتینگ و مدیریت در ساختار کسب‌وکار."],
       ["پل بین کسب‌وکار و تکنولوژی", "تبدیل نیازهای مدیریتی و عملیاتی به راه‌حل‌های قابل اجرا با ابزارهای دیجیتال، اتوماسیون و AI."],
-      ["طراحی ساختار داده‌محور", "طراحی ساختارهای داده‌محور و قابل توسعه برای گزارش‌گیری، اتوماسیون و تصمیم‌گیری بهتر."],
-      ["استفاده عملی از AI", "استفاده از AI برای افزایش سرعت، کاهش خطا، بهبود کیفیت و پشتیبانی تصمیم؛ نه صرفا نمایش تکنولوژی."],
+      ["ادامه از آخرین وضعیت تأییدشده", "منابع، تصمیم‌ها و کار باز را در یک مرجع مشترک ثبت می‌کنم تا تیم یا عامل بتواند از همان‌جا ادامه دهد."],
+      ["بازبینی پیش از تحویل", "وقتی عامل سند، ترجمه یا گزارش آماده می‌کند، بازبینی محتوا و آزمون پذیرش خروجی را جدا انجام می‌دهم."],
       ["کار بین تیم‌ها", "کار در تقاطع تیم‌های فروش، تولید، لجستیک، مالی، منابع انسانی، مارکتینگ و مدیریت."],
-      ["مستندسازی شفاف", "مستندسازی شفاف برای تیم‌های فنی و غیرفنی تا سیستم‌ها قابل انتقال و مقیاس‌پذیر باشند."]
+      ["تحویل همراه با آزمون", "کنار کد، راهنمای راه‌اندازی، فرض‌ها و نمونهٔ اجرا می‌گذارم تا تیم بعدی بتواند سیستم را بررسی و استفاده کند."]
     ]
   }
 } as const;

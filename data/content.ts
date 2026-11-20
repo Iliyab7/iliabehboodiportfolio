@@ -1,3 +1,5 @@
+import { agentEvidence } from "./agentCaseStudies";
+
 export type Language = "en" | "fa";
 
 export type ContactMethod = {
@@ -191,10 +193,10 @@ export const content = {
     nav: {
       brand: "Ilia Behboodi",
       items: [
+        { label: "Projects", href: "#projects" },
         { label: "How I Help", href: "#help" },
         { label: "Use Cases", href: "#ai-use-cases" },
-        { label: "Projects", href: "#projects" },
-        { label: "Impact", href: "#impact" },
+        { label: "Evidence", href: "#impact" },
         { label: "Experience", href: "#experience" },
         { label: "Tech Stack", href: "#tech" },
         { label: "Contact", href: "#contact" }
@@ -204,12 +206,12 @@ export const content = {
     hero: {
       badge: "AI Automation & Digital Systems Strategist",
       name: "Ilia Behboodi",
-      microcopy: "Practical systems. Clear reporting. Less manual work.",
-      headline: "Building AI-Powered Digital Systems for B2B & Industrial Businesses",
+      microcopy: "Source evidence, human review and work that can be handed over.",
+      headline: "Building AI Agents and Digital Systems for Business",
       subheadline:
-        "I design automation workflows, dashboards, SEO-driven websites, and AI-assisted reporting systems that help traditional businesses reduce manual work, improve visibility, and make faster decisions.",
+        "I build AI agents, knowledge libraries and operating tools for sales, reporting and industrial work. Each system makes it clear where the data came from, what was checked and how the next person can take over.",
       shortSubheadline:
-        "Automation, dashboards, SEO websites, and AI reporting systems for B2B operations.",
+        "AI agents, knowledge libraries and operating tools for B2B and industrial teams.",
       primaryCta: "View Projects",
       secondaryCta: "Contact Me",
       downloadProfile: "Download Profile",
@@ -244,10 +246,9 @@ export const content = {
       ]
     },
     projectsSection: {
-      eyebrow: "Featured Projects",
-      title: "Proof that messy operations can become clearer systems.",
-      description:
-        "These case studies show the same pattern behind the AI Productivity Audit: find the manual bottleneck, structure the data, automate the repeated work, and turn reporting into faster management decisions.",
+      eyebrow: "Portfolio",
+      title: "Selected projects",
+      description: "Case studies from public agent starter kits, industrial and commercial systems, and websites. Each study shows what was built and points to the available work.",
       labels: {
         problem: "Problem",
         solution: "Solution",
@@ -285,37 +286,13 @@ export const content = {
       ]
     },
     impact: {
-      eyebrow: "Impact Dashboard",
-      title: "A compact control panel for operational improvement.",
-      description:
-        "The dashboard frames portfolio outcomes as reporting speed, error reduction, workflow coverage, and decision support maturity.",
-      note: "Metrics are based on internal project goals, operational estimates, and portfolio case studies.",
-      metricCards: [
-        { value: "70%", label: "Faster Reporting" },
-        { value: "85%", label: "Error Reduction" },
-        { value: "90%", label: "Faster Management Response" },
-        { value: "8", label: "Operational Workflows" }
-      ],
-      projectImpact: [
-        { name: "Mining Reporting System", value: 70 },
-        { name: "Management AI Chatbot", value: 90 },
-        { name: "Container Planning Automation", value: 60 },
-        { name: "Lightweight ERP Architecture", value: 80 },
-        { name: "B2B Website/SEO Systems", value: 65 }
-      ],
-      workflowStages: [
-        { name: "Manual", value: 10 },
-        { name: "Structured Data", value: 35 },
-        { name: "Automation", value: 65 },
-        { name: "Dashboard", value: 80 },
-        { name: "AI Layer", value: 92 }
-      ],
-      automationCoverage: [
-        { name: "Data Entry", value: 90 },
-        { name: "Reporting", value: 85 },
-        { name: "Decision Support", value: 75 },
-        { name: "Marketing Systems", value: 70 },
-        { name: "Operations", value: 80 }
+      eyebrow: "Project evidence",
+      title: "Review the work behind the case studies",
+      description: "Open the public release, acceptance criteria and deployment history.",
+      items: [
+        { title: "Wellbeing pilot release", description: "Versioned starter and release notes for the personal wellbeing workflow.", href: agentEvidence.wellbeingRelease },
+        { title: "PDF library acceptance criteria", description: "The checks for intake, review, quality control and final delivery.", href: agentEvidence.libraryAcceptance },
+        { title: "Portfolio deployments", description: "GitHub Actions records builds and publishes this website to Firebase Hosting.", href: "https://github.com/Iliyab7/iliabehboodiportfolio/actions/workflows/firebase-hosting.yml" }
       ]
     },
     process: {
@@ -372,8 +349,8 @@ export const content = {
     },
     about: {
       eyebrow: "About",
-      title: "A systems-minded strategist for B2B and industrial operations.",
-      body: "I work at the intersection of AI automation, digital marketing, and business operations. My focus is on building practical systems that help traditional and B2B companies reduce manual work, improve reporting, and grow through smarter digital infrastructure."
+      title: "From industrial operations to AI agents and knowledge systems",
+      body: "My work spans market research, sales and mining operations, then extends to AI agents that handle documents and personal briefings. I turn recurring work into maintainable systems with explicit data sources, checks and a handoff someone else can follow."
     },
     services: {
       eyebrow: "Work With Me",
@@ -443,7 +420,7 @@ export const content = {
       items: [
         { label: "کمک به کسب‌وکار", href: "#help" },
         { label: "پروژه‌ها", href: "#projects" },
-        { label: "اثرگذاری", href: "#impact" },
+        { label: "شواهد", href: "#impact" },
         { label: "فرآیند", href: "#process" },
         { label: "ابزارها", href: "#tech" },
         { label: "درباره", href: "#about" },
@@ -454,12 +431,12 @@ export const content = {
     hero: {
       badge: "استراتژیست اتوماسیون هوش مصنوعی و سیستم‌های دیجیتال",
       name: "ایلیا بهبودی",
-      microcopy: "سیستم‌های عملی. گزارش‌گیری شفاف. کار دستی کمتر.",
-      headline: "طراحی سیستم‌های دیجیتال و اتوماسیون هوش مصنوعی برای کسب‌وکارهای صنعتی و B2B",
+      microcopy: "منابع قابل‌پیگیری، بازبینی انسانی و تحویل مستند.",
+      headline: "عامل‌های هوش مصنوعی و سیستم‌های دیجیتال برای کسب‌وکار",
       subheadline:
-        "من جریان‌های کاری خودکار، داشبوردهای مدیریتی، وب‌سایت‌های سئومحور و سیستم‌های گزارش‌سازی مبتنی بر هوش مصنوعی طراحی می‌کنم تا کسب‌وکارهای سنتی بتوانند کارهای دستی را کاهش دهند، شفاف‌تر کار کنند و سریع‌تر تصمیم بگیرند.",
+        "عامل‌های هوش مصنوعی، کتابخانه‌های دانش و ابزارهای فروش، گزارش‌گیری و عملیات صنعتی می‌سازم. در هر سیستم روشن است داده از کجا آمده، چه چیزی بررسی شده و نفر بعد چطور می‌تواند کار را ادامه دهد.",
       shortSubheadline:
-        "اتوماسیون، داشبورد، وب‌سایت سئومحور و گزارش‌سازی AI برای کسب‌وکارهای B2B.",
+        "عامل‌های هوش مصنوعی، کتابخانه‌های دانش و ابزارهای عملیاتی برای تیم‌های صنعتی و B2B.",
       primaryCta: "مشاهده پروژه‌ها",
       secondaryCta: "ارتباط با من",
       downloadProfile: "دانلود پروفایل",
@@ -494,10 +471,9 @@ export const content = {
       ]
     },
     projectsSection: {
-      eyebrow: "پروژه‌های منتخب",
-      title: "اتوماسیون صنعتی، وب‌سایت‌های B2B، داشبوردها و سیستم‌های گزارش‌گیری هوشمند.",
-      description:
-        "هر پروژه بر اساس یک مسئله واقعی کسب‌وکار، راه‌حل طراحی‌شده و خروجی عملیاتی قابل استفاده معرفی شده است.",
+      eyebrow: "پورتفولیو",
+      title: "پروژه‌های منتخب",
+      description: "مطالعه‌های موردی از بسته‌های عمومی عامل‌های هوش مصنوعی، سیستم‌های صنعتی و تجاری و وب‌سایت‌ها. در هر پروژه می‌توانید خروجی و مستندات در دسترس را ببینید.",
       labels: {
         problem: "مسئله",
         solution: "راه‌حل",
@@ -536,37 +512,13 @@ export const content = {
       ]
     },
     impact: {
-      eyebrow: "داشبورد اثرگذاری",
-      title: "یک پنل کنترلی فشرده برای بهبود عملیات.",
-      description:
-        "این داشبورد خروجی پروژه‌ها را از زاویه سرعت گزارش‌گیری، کاهش خطا، پوشش اتوماسیون و بلوغ تصمیم‌گیری مدیریتی نشان می‌دهد.",
-      note: "شاخص‌ها بر اساس اهداف داخلی پروژه، برآوردهای عملیاتی و نمونه‌کارهای پورتفولیو ارائه شده‌اند.",
-      metricCards: [
-        { value: "۷۰٪", label: "گزارش‌گیری سریع‌تر" },
-        { value: "۸۵٪", label: "کاهش خطا" },
-        { value: "۹۰٪", label: "پاسخ مدیریتی سریع‌تر" },
-        { value: "۸", label: "جریان عملیاتی" }
-      ],
-      projectImpact: [
-        { name: "سیستم گزارش معدن", value: 70 },
-        { name: "چت‌بات مدیریتی", value: 90 },
-        { name: "اتوماسیون چیدمان کانتینر", value: 60 },
-        { name: "معماری ERP سبک", value: 80 },
-        { name: "وب‌سایت و SEO B2B", value: 65 }
-      ],
-      workflowStages: [
-        { name: "دستی", value: 10 },
-        { name: "داده ساختاریافته", value: 35 },
-        { name: "اتوماسیون", value: 65 },
-        { name: "داشبورد", value: 80 },
-        { name: "لایه AI", value: 92 }
-      ],
-      automationCoverage: [
-        { name: "ورود داده", value: 90 },
-        { name: "گزارش‌گیری", value: 85 },
-        { name: "تصمیم‌یار مدیریتی", value: 75 },
-        { name: "سیستم‌های بازاریابی", value: 70 },
-        { name: "عملیات", value: 80 }
+      eyebrow: "شواهد پروژه",
+      title: "خروجی‌ها را از روی منبع بررسی کنید",
+      description: "نسخهٔ منتشرشده، معیارهای پذیرش و سابقهٔ استقرار را ببینید.",
+      items: [
+        { title: "انتشار پایلوت بهزیستی", description: "بستهٔ نسخه‌دار و یادداشت انتشار گردش کار بهزیستی شخصی.", href: agentEvidence.wellbeingRelease },
+        { title: "معیارهای پذیرش کتابخانهٔ PDF", description: "بررسی‌های ورودی، بازبینی، کنترل کیفیت و تحویل نهایی.", href: agentEvidence.libraryAcceptance },
+        { title: "سابقهٔ انتشار پورتفولیو", description: "GitHub Actions بیلدها را ثبت می‌کند و این وب‌سایت را روی Firebase Hosting منتشر می‌کند.", href: "https://github.com/Iliyab7/iliabehboodiportfolio/actions/workflows/firebase-hosting.yml" }
       ]
     },
     process: {
@@ -624,8 +576,8 @@ export const content = {
     },
     about: {
       eyebrow: "درباره",
-      title: "استراتژیست سیستم‌محور برای عملیات صنعتی و B2B.",
-      body: "من در نقطه اتصال اتوماسیون هوش مصنوعی، دیجیتال مارکتینگ و عملیات کسب‌وکار کار می‌کنم. تمرکزم طراحی سیستم‌های عملی و قابل استفاده‌ای است که به شرکت‌های سنتی و B2B کمک می‌کنند کارهای دستی را کاهش دهند، گزارش‌گیری را بهتر کنند و با زیرساخت دیجیتال هوشمندتر رشد کنند."
+      title: "از عملیات صنعتی تا عامل‌های هوش مصنوعی و سامانه‌های دانش",
+      body: "پروژه‌هایم از تحقیق بازار، فروش و عملیات معدن تا عامل‌های پردازش اسناد و گزارش شخصی را در بر می‌گیرند. کار تکرارشونده را به سیستمی تبدیل می‌کنم که منبع داده و نتیجهٔ بررسی در آن روشن باشد و یک نفر دیگر هم بتواند آن را تحویل بگیرد."
     },
     services: {
       eyebrow: "همکاری",
