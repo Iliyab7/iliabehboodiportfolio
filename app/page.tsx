@@ -20,6 +20,7 @@ import { Badge } from "@/components/Badge";
 import { Container } from "@/components/Container";
 import { DataDivider } from "@/components/DataDivider";
 import { EducationLearning } from "@/components/EducationLearning";
+import { FeaturedProjectCard } from "@/components/FeaturedProjectCard";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { HeroVisual } from "@/components/HeroVisual";
 import { HowIHelp } from "@/components/HowIHelp";
@@ -36,10 +37,15 @@ import { TechStackItem } from "@/components/TechStackItem";
 import { WorkingPrinciples } from "@/components/WorkingPrinciples";
 import { caseStudies } from "@/data/caseStudies";
 import { contactLinks, content, type Language } from "@/data/content";
+import { featuredProjects } from "@/data/featuredProjects";
 import { githubProfile, projectGroups } from "@/data/projectGroups";
 
 type Theme = "light" | "dark";
 
+const featuredSlugs = new Set(featuredProjects.map((feature) => feature.slug));
+const otherProjectGroups = projectGroups
+  .map((group) => ({ ...group, slugs: group.slugs.filter((slug) => !featuredSlugs.has(slug)) }))
+  .filter((group) => group.slugs.length > 0);
 const contactIcons = [Mail, Linkedin, Send, MessageCircle, Instagram, Phone];
 
 export default function Home() {
@@ -148,7 +154,7 @@ export default function Home() {
         <div className="noise-layer pointer-events-none absolute inset-0 opacity-[0.16]" />
         <div className="pointer-events-none absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-blue-100/80 blur-3xl dark:bg-blue-500/20" />
         <div className="pointer-events-none absolute bottom-10 right-0 h-80 w-80 rounded-full bg-cyan-100/70 blur-3xl dark:bg-cyan-400/16" />
-        <Container className="relative grid items-center gap-8 py-12 md:min-h-[calc(100vh-4rem)] md:gap-10 md:py-20 lg:grid-cols-[1.02fr_0.98fr] lg:gap-12">
+        <Container className="relative grid items-center gap-8 py-12 md:min-h-[min(76vh,720px)] md:gap-10 md:py-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-12">
           <Reveal>
             <div className="max-w-4xl">
               <Badge>{t.hero.badge}</Badge>
@@ -226,14 +232,33 @@ export default function Home() {
       </section>
       <DataDivider />
 
-      <section id="projects" className="border-y border-slate-200 bg-white py-12 transition-colors dark:border-slate-800 dark:bg-[#07111f] md:py-20 lg:py-28">
+      <section id="projects" className="scroll-mt-16 border-y border-slate-200 bg-white py-12 transition-colors dark:border-slate-800 dark:bg-[#07111f] md:py-20 lg:py-28">
         <Container>
-          <SectionHeader
-            lang={language}
-            eyebrow={t.projectsSection.eyebrow}
-            title={t.projectsSection.title}
-            description={t.projectsSection.description}
-          />
+          <div className="flex flex-wrap items-start justify-between gap-x-4">
+            <SectionHeader lang={language} title={t.projectsSection.title} description={t.projectsSection.featuredDescription} />
+            <a href="#project-library" className="mb-6 inline-flex min-h-11 items-center gap-2 rounded-md border border-slate-200 px-4 text-sm font-semibold text-accent hover:border-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 dark:border-slate-700 dark:text-blue-200">
+              {t.projectsSection.browseLibrary}<ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-12 xl:gap-5">
+            {featuredProjects.map((feature, index) => {
+              const project = projectsBySlug.get(feature.slug);
+              if (!project) return null;
+
+              return (
+                <div key={feature.slug} id={feature.slug === "ai-engineering-delivery" ? "projects-engineering" : undefined} className={index < 2 ? "scroll-mt-24 xl:col-span-6" : "scroll-mt-24 xl:col-span-3"}>
+                  <FeaturedProjectCard feature={feature} project={project} language={language} />
+                </div>
+              );
+            })}
+          </div>
+          <div id="project-library" className="mt-14 scroll-mt-24 border-t border-slate-200 pt-9 dark:border-slate-800 md:mt-20 md:pt-12">
+            <SectionHeader
+              lang={language}
+              title={t.projectsSection.libraryTitle}
+              description={t.projectsSection.description}
+            />
+          </div>
           <a
             href={githubProfile}
             target="_blank"
@@ -245,14 +270,14 @@ export default function Home() {
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
           <nav aria-label={isFa ? "زمینه‌های پروژه" : "Project categories"} className="mb-8 flex flex-wrap gap-2">
-            {projectGroups.map((group) => (
+            {otherProjectGroups.map((group) => (
               <a key={group.id} href={`#projects-${group.id}`} className="inline-flex min-h-10 items-center rounded-full border border-slate-200 px-3 text-sm font-semibold text-navy hover:border-blue-300 hover:text-accent dark:border-slate-700 dark:text-slate-200">
                 {group.nav[language]}
               </a>
             ))}
           </nav>
           <div className="space-y-12 md:space-y-16">
-            {projectGroups.map((group) => (
+            {otherProjectGroups.map((group) => (
               <section key={group.id} aria-labelledby={`projects-${group.id}`} className="border-t border-slate-200 pt-7 dark:border-slate-800">
                 <h3 id={`projects-${group.id}`} className="scroll-mt-24 text-2xl font-semibold text-ink dark:text-white">
                   {group.title[language]}
