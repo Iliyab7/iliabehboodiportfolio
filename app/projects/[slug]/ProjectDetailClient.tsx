@@ -5,16 +5,18 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Moon, Sun } from "lucide-react";
 import { Badge } from "@/components/Badge";
 import { Container } from "@/components/Container";
+import { FeaturedCaseWalkthrough } from "@/components/FeaturedCaseWalkthrough";
 import { FeaturedProjectVisual } from "@/components/FeaturedProjectVisual";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { Reveal } from "@/components/Reveal";
 import { caseStudies } from "@/data/caseStudies";
 import { featuredProjects } from "@/data/featuredProjects";
+import type { Walkthrough } from "@/data/featuredWalkthroughs";
 import { contactLinks, content, type Language } from "@/data/content";
 
 type Theme = "light" | "dark";
 
-export function ProjectDetailClient({ slug }: { slug: string }) {
+export function ProjectDetailClient({ slug, walkthroughContent }: { slug: string; walkthroughContent?: Record<Language, Walkthrough> }) {
   const [language, setLanguage] = useState<Language>("en");
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
@@ -63,8 +65,9 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
   }
 
   const externalLink = project.source ?? project.link;
-  const verification = project.verification;
   const feature = featuredProjects.find((entry) => entry.slug === project.slug);
+  const walkthrough = walkthroughContent?.[language];
+  const verification = walkthrough?.verification ?? project.verification;
 
   return (
     <main dir={isFa ? "rtl" : "ltr"} className="min-h-screen bg-offwhite text-ink dark:bg-[#050a12] dark:text-slate-100">
@@ -80,6 +83,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
                 <button
                   key={item}
                   type="button"
+                  aria-pressed={language === item}
                   onClick={() => setLanguage(item)}
                   className={`rounded px-3 py-1.5 text-xs font-semibold transition ${
                     language === item ? "bg-navy text-white dark:bg-blue-500" : "text-muted dark:text-slate-400"
@@ -108,7 +112,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
           <Reveal>
             <div>
               <Badge>{project.category}</Badge>
-              <h1 className={`mt-6 max-w-4xl font-semibold leading-[1.08] text-navy dark:text-white ${isFa ? "text-3xl sm:text-5xl" : "text-4xl sm:text-6xl"}`}>
+              <h1 className={`mt-6 max-w-4xl font-semibold text-navy dark:text-white ${isFa ? "text-3xl leading-snug sm:text-5xl" : "text-4xl leading-[1.08] sm:text-6xl"}`}>
                 {project.title}
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-muted dark:text-slate-400">
@@ -120,6 +124,12 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
                 </p>
               ) : null}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                {walkthrough ? (
+                  <a href="#how-it-works" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-navy px-5 py-3 text-sm font-semibold text-white hover:bg-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:bg-blue-500 dark:hover:bg-blue-400">
+                    {isFa ? "دیدن نمونهٔ کارکرد" : "Walk through an example"}
+                    <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                ) : null}
                 {externalLink ? (
                   <a
                     href={externalLink}
@@ -150,41 +160,47 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
         </Container>
       </section>
 
-      <section className="py-20 sm:py-28">
-        <Container>
-          <div className="grid gap-6 lg:grid-cols-2">
-            <InfoBlock title={isFa ? "مسئله" : "Problem"} body={project.problem} />
-            <InfoBlock title={isFa ? "راه‌حل" : "Solution"} body={project.solution} />
-          </div>
-          {project.evidence ? (
-            <div className="mt-9">
-              <SectionTitle title={isFa ? "مستندات و شواهد پروژه" : "Project documentation and evidence"} />
-              <ul className="mt-4 flex flex-wrap gap-3">
-                {project.evidence.map(({ label, href }) => (
-                  <li key={href}>
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-md border border-slate-200 px-4 text-sm font-semibold text-accent dark:border-slate-700 dark:text-blue-200">
-                      {label}<ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </Container>
-      </section>
-
-      <section className="section-surface border-y border-slate-200 py-20 dark:border-slate-800 sm:py-28">
-        <Container>
-          <SectionTitle title={isFa ? "چه چیزی ساختم" : "What I Built"} />
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {project.whatIBuilt.map((item) => (
-              <div key={item} className="card-premium rounded-lg p-5">
-                <p className="text-sm leading-7 muted-copy">{item}</p>
+      {walkthrough ? (
+        <FeaturedCaseWalkthrough walkthrough={walkthrough} language={language} />
+      ) : (
+        <>
+          <section className="py-20 sm:py-28">
+            <Container>
+              <div className="grid gap-6 lg:grid-cols-2">
+                <InfoBlock title={isFa ? "مسئله" : "Problem"} body={project.problem} />
+                <InfoBlock title={isFa ? "راه‌حل" : "Solution"} body={project.solution} />
               </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+              {project.evidence ? (
+                <div className="mt-9">
+                  <SectionTitle title={isFa ? "مستندات و شواهد پروژه" : "Project documentation and evidence"} />
+                  <ul className="mt-4 flex flex-wrap gap-3">
+                    {project.evidence.map(({ label, href }) => (
+                      <li key={href}>
+                        <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-md border border-slate-200 px-4 text-sm font-semibold text-accent dark:border-slate-700 dark:text-blue-200">
+                          {label}<ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </Container>
+          </section>
+
+          <section className="section-surface border-y border-slate-200 py-20 dark:border-slate-800 sm:py-28">
+            <Container>
+              <SectionTitle title={isFa ? "چه چیزی ساختم" : "What I Built"} />
+              <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {project.whatIBuilt.map((item) => (
+                  <div key={item} className="card-premium rounded-lg p-5">
+                    <p className="text-sm leading-7 muted-copy">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </section>
+        </>
+      )}
 
       <section className="py-20 sm:py-28">
         <Container>
@@ -225,19 +241,21 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
         </Container>
       </section>
 
-      <section className="section-surface border-y border-slate-200 py-20 dark:border-slate-800 sm:py-28">
-        <Container>
-          <SectionTitle title={isFa ? "فرآیند اجرا" : "Process"} />
-          <div className="mt-8 grid gap-4 md:grid-cols-5">
-            {project.process.map((step, index) => (
-              <div key={step} className="card-premium rounded-lg p-5">
-                <p className="text-sm font-semibold text-accent">{String(index + 1).padStart(2, "0")}</p>
-                <p className="mt-3 text-sm leading-7 muted-copy">{step}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      {walkthrough ? null : (
+        <section className="section-surface border-y border-slate-200 py-20 dark:border-slate-800 sm:py-28">
+          <Container>
+            <SectionTitle title={isFa ? "فرآیند اجرا" : "Process"} />
+            <div className="mt-8 grid gap-4 md:grid-cols-5">
+              {project.process.map((step, index) => (
+                <div key={step} className="card-premium rounded-lg p-5">
+                  <p className="text-sm font-semibold text-accent">{String(index + 1).padStart(2, "0")}</p>
+                  <p className="mt-3 text-sm leading-7 muted-copy">{step}</p>
+                </div>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       <section className="bg-navy py-16 text-white">
         <Container>
