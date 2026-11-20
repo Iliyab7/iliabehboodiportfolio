@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "id": "20261120T133308Z-featured-project-case-study-walkthroughs",
+  "repository": "Iliyab7/iliabehboodiportfolio",
+  "occurred_at": "2026-11-20T13:33:08Z",
+  "title": "Expand six featured project detail pages",
+  "summary": "Added richer bilingual problem and implementation narratives and a four-stage walkthrough to each featured detail page.",
+  "outcome": "The examples demonstrate distinct systems, their outputs and documented verification boundaries using fictional records.",
+  "status": "implemented",
+  "decisions": [
+    "Load only the walkthrough for the current page and keep existing non-featured routes on their original template.",
+    "Keep sample records self-contained and localized. Public artifacts contain no internal references or live input."
+  ],
+  "blockers": [],
+  "next_actions": [
+    "Check all six walkthroughs in production after Firebase release."
+  ],
+  "evidence": [
+    "components/FeaturedCaseWalkthrough.tsx",
+    "data/featuredWalkthroughs.ts",
+    "app/projects/[slug]/page.tsx"
+  ]
+}

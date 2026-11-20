@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudies, caseStudySlugs } from "@/data/caseStudies";
+import { featuredWalkthroughs } from "@/data/featuredWalkthroughs";
 import { projectUrl } from "@/data/site";
 import { ProjectDetailClient } from "./ProjectDetailClient";
 
@@ -35,5 +36,5 @@ export function generateMetadata({ params }: ProjectPageProps): Metadata {
 }
 
 export default function ProjectPage({ params }: ProjectPageProps) {
-  return <ProjectDetailClient slug={params.slug} />;
+  return <ProjectDetailClient slug={params.slug} walkthroughContent={featuredWalkthroughs[params.slug]} />;
 }
