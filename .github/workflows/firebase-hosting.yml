@@ -1,0 +1,61 @@
+name: Firebase Hosting
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Firebase Hosting channel
+        type: choice
+        options: [preview, live]
+        default: preview
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: firebase-hosting-${{ github.event_name == 'pull_request' && github.ref || inputs.channel || 'live' }}
+  cancel-in-progress: false
+
+jobs:
+  hosting:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: ${{ vars.PORTFOLIO_SITE_URL || 'https://ilia-behboodi-portfolio.web.app' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Check manual deployment branch
+        if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
+        run: |
+          echo 'Select the main branch to deploy Firebase Hosting.' >&2
+          exit 1
+      - name: Authenticate to Google Cloud
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
+        with:
+          project_id: ilia-behboodi-portfolio
+          workload_identity_provider: projects/681151021117/locations/global/workloadIdentityPools/portfolio-github/providers/github-main
+          service_account: github-hosting-deploy@ilia-behboodi-portfolio.iam.gserviceaccount.com
+      - name: Deploy to Firebase Hosting
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        env:
+          CHANNEL: ${{ inputs.channel || 'live' }}
+          FIREBASE_HOSTING_UPLOAD_CONCURRENCY: '4'
+        run: |
+          if [ "$CHANNEL" = preview ]; then
+            npx --yes firebase-tools@15.37.0 hosting:channel:deploy github-preview --expires 1d --no-authorized-domains --project ilia-behboodi-portfolio --non-interactive
+          else
+            npx --yes firebase-tools@15.37.0 deploy --only hosting --project ilia-behboodi-portfolio --non-interactive
+          fi

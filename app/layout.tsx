@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { siteUrl } from "@/data/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,14 +27,14 @@ export const metadata: Metadata = {
     "Management Reporting"
   ],
   alternates: {
-    canonical: "https://iliabehboodiportfolio.vercel.app"
+    canonical: `${siteUrl}/`
   },
   openGraph: {
     title: "Ilia Behboodi | AI Automation & Digital Systems Strategist",
     description:
       "Workflow automation, dashboards, SEO-driven websites, AI-assisted reporting systems, and digital infrastructure for B2B and industrial businesses.",
     type: "website",
-    url: "https://iliabehboodiportfolio.vercel.app",
+    url: `${siteUrl}/`,
     siteName: "Ilia Behboodi Portfolio"
   },
   twitter: {
