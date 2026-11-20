@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "id": "20261120T120954Z-firebase-spark-live",
+  "repository": "Iliyab7/iliabehboodiportfolio",
+  "occurred_at": "2026-11-20T12:09:54Z",
+  "title": "Publish portfolio to Firebase Hosting Spark",
+  "summary": "Built the reviewed GitHub source in Firebase Cloud Shell, verified a preview release, and promoted the same version to live on Spark.",
+  "outcome": "The live homepage and seven case-study routes returned HTTP 200, a missing case study returned 404, and Persian mode switched the live page to right-to-left. Cloud identity was restricted to the GitHub Actions workflow on main.",
+  "status": "live-verified",
+  "decisions": [
+    "Authenticated GitHub Actions with short-lived Workload Identity Federation grants restricted to the portfolio workflow on main.",
+    "An upload retry with concurrency set to four successfully completed the Firebase preview."
+  ],
+  "blockers": [],
+  "next_actions": [
+    "Verify the first automated main-branch GitHub Actions release after merging."
+  ],
+  "evidence": [
+    "https://ilia-behboodi-portfolio.web.app",
+    "https://github.com/Iliyab7/iliabehboodiportfolio/pull/4",
+    "Firebase Hosting preview version 414c3bbcae4d1655 was promoted to live."
+  ]
+}
