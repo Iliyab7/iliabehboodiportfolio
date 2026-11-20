@@ -1,23 +1,17 @@
+import { BookOpen, CheckCircle2, ClipboardCheck, Database, FileText, HeartPulse, Users } from "lucide-react";
 import type { CaseStudy } from "@/data/caseStudies";
 
 type Language = "en" | "fa";
 
-const visualBySlug: Record<string, CaseStudy["visual"]> = {
-  "mahed-lead-generation-platform": "lead-platform",
-  "mining-operations-management-system": "mining",
-  "mahed-group-website": "website",
-  "shayan-quarry-website": "quarry",
-  "management-ai-chatbot": "chatbot",
-  "export-logistics-container-planning": "logistics",
-  "international-academy-management-system": "academy"
-};
-
-export function ProjectVisual({ type, slug, language = "en" }: { type?: CaseStudy["visual"]; slug?: CaseStudy["slug"]; language?: Language }) {
-  const visualType = type ?? (slug ? visualBySlug[slug] : undefined);
+export function ProjectVisual({ type: visualType, language }: { type: CaseStudy["visual"]; language: Language }) {
   const isFa = language === "fa";
 
+  if (visualType === "wellbeing" || visualType === "library") {
+    return <AgentWorkflowVisual type={visualType} language={language} />;
+  }
+
   return (
-    <div dir={isFa ? "rtl" : "ltr"} className="relative overflow-hidden rounded-xl border border-slate-200 bg-slate-100/80 p-3 text-left shadow-[0_18px_50px_rgba(15,23,42,0.12)] transition-colors dark:border-slate-700/70 dark:bg-[#050a12] sm:p-4" aria-label={isFa ? "پیش‌نمایش رابط کاربری پروژه" : "Project interface preview"}>
+    <div dir={isFa ? "rtl" : "ltr"} className="relative overflow-hidden rounded-xl border border-slate-200 bg-slate-100/80 p-3 text-left shadow-[0_18px_50px_rgba(15,23,42,0.12)] transition-colors dark:border-slate-700/70 dark:bg-[#050a12] sm:p-4" aria-label={isFa ? "نمای شماتیک رابط پروژه" : "Illustrated project interface"}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(37,99,235,0.18),transparent_36%),radial-gradient(circle_at_86%_82%,rgba(6,182,212,0.14),transparent_30%)]" />
       <BrowserBar isFa={isFa} />
       <div className="relative mt-3 min-h-[190px] sm:min-h-[220px]">
@@ -33,12 +27,50 @@ export function ProjectVisual({ type, slug, language = "en" }: { type?: CaseStud
   );
 }
 
+const agentVisuals = {
+  wellbeing: {
+    en: { title: "Wellbeing briefing workflow", stages: ["Authorized sources", "Specialist team", "Health brief"], state: "Private Sheet · profile and preferences" },
+    fa: { title: "گردش کار گزارش بهزیستی", stages: ["منابع مجاز", "تیم تخصصی", "گزارش سلامت"], state: "شیت خصوصی برای شناخت و ترجیحات" },
+    icons: [Database, Users, HeartPulse]
+  },
+  library: {
+    en: { title: "PDF library workflow", stages: ["Drive inbox", "Review and QA", "Library output"], state: "Sheets catalog · history and next steps" },
+    fa: { title: "گردش کار کتابخانهٔ PDF", stages: ["ورودی Drive", "بازبینی و QA", "خروجی کتابخانه"], state: "فهرست Sheets برای سابقه و ادامهٔ کار" },
+    icons: [FileText, ClipboardCheck, BookOpen]
+  }
+} as const;
+
+function AgentWorkflowVisual({ type, language }: { type: keyof typeof agentVisuals; language: Language }) {
+  const workflow = agentVisuals[type];
+  const view = workflow[language];
+
+  return (
+    <figure className="flex min-h-[240px] flex-col justify-center rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50 p-4 shadow-sm dark:border-slate-700 dark:from-slate-900 dark:via-[#0a1627] dark:to-slate-950 sm:p-5">
+      <figcaption className="text-sm font-semibold text-navy dark:text-blue-100">{view.title}</figcaption>
+      <ol className="mt-4 grid grid-cols-3 items-stretch gap-1.5 sm:gap-2">
+        {view.stages.map((stage, index) => {
+          const Icon = workflow.icons[index];
+          return (
+            <li key={stage} className="flex min-w-0 flex-col items-center justify-center gap-2 rounded-md border border-blue-100 bg-white/90 px-1 py-3 text-center text-[11px] font-semibold leading-5 text-navy dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 sm:text-xs">
+              <Icon className="h-4 w-4 shrink-0 text-accent dark:text-blue-300" aria-hidden="true" />
+              {stage}
+            </li>
+          );
+        })}
+      </ol>
+      <p className="mt-4 flex items-center gap-2 text-xs leading-6 text-charcoal dark:text-slate-300">
+        <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-300" aria-hidden="true" />
+        {view.state}
+      </p>
+    </figure>
+  );
+}
+
 function BrowserBar({ isFa }: { isFa: boolean }) {
   return (
     <div className="relative flex items-center justify-between rounded-lg border border-white/80 bg-white/90 px-3 py-2 shadow-sm dark:border-slate-700 dark:bg-slate-900/95">
       <div className="flex gap-1.5" aria-hidden="true"><span className="h-2.5 w-2.5 rounded-full bg-[#ff7a59]" /><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /><span className="h-2.5 w-2.5 rounded-full bg-emerald-400" /></div>
-      <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[9px] font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 sm:text-[10px]">{isFa ? "نمای زنده پروژه" : "live project preview"}</span>
-      <span className="flex items-center gap-1 text-[9px] font-semibold text-emerald-600 dark:text-emerald-300"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />{isFa ? "آنلاین" : "Live"}</span>
+      <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[9px] font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 sm:text-[10px]">{isFa ? "نمای شماتیک با دادهٔ نمونه" : "Illustration with sample data"}</span>
     </div>
   );
 }
@@ -54,7 +86,7 @@ function LeadPlatformVisual({ isFa }: { isFa: boolean }) {
         {[labels.lead, labels.search, labels.report].map((item, index) => <div key={item} className={`mb-2 rounded-md px-1.5 py-2 ${index === 0 ? "bg-white/10 text-white" : "text-blue-200/75"}`}>{item}</div>)}
       </aside>
       <div className="p-3 sm:p-4">
-        <div className="flex items-center justify-between gap-2"><div><span className="text-[8px] font-semibold text-blue-500 sm:text-[9px]">MAHED WORKSPACE</span><h4 className="mt-1 text-xs font-black text-slate-900 dark:text-white sm:text-sm">{labels.title}</h4></div><span className="rounded-full bg-emerald-100 px-2 py-1 text-[8px] font-bold text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300">● {isFa ? "زنده" : "Live"}</span></div>
+        <div className="flex items-center justify-between gap-2"><div><span className="text-[8px] font-semibold text-blue-500 sm:text-[9px]">MAHED WORKSPACE</span><h4 className="mt-1 text-xs font-black text-slate-900 dark:text-white sm:text-sm">{labels.title}</h4></div><span className="rounded-full bg-emerald-100 px-2 py-1 text-[8px] font-bold text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300">● {isFa ? "نمونه" : "Sample"}</span></div>
         <div className="mt-3 grid grid-cols-3 gap-1.5 sm:gap-2">
           {[[labels.qualified, "842"], [labels.markets, "18"], [labels.ready, "24"]].map(([label, value]) => <div key={label} className="rounded-md border border-slate-200 bg-white p-2 dark:border-slate-700 dark:bg-slate-900 sm:p-3"><span className="block text-[7px] text-slate-500 dark:text-slate-400 sm:text-[9px]">{label}</span><strong className="mt-1 block text-sm text-[#102b50] dark:text-white sm:text-lg">{value}</strong></div>)}
         </div>

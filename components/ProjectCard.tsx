@@ -17,6 +17,9 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project, labels, language }: ProjectCardProps) {
+  const externalLink = project.source ?? project.link;
+  const externalLabel = project.source ? (language === "fa" ? "مشاهده در گیت‌هاب" : "View on GitHub") : labels.visit;
+
   return (
     <>
     <article className="card-premium group relative flex h-full flex-col overflow-hidden rounded-2xl p-3.5 md:hidden">
@@ -25,13 +28,13 @@ export function ProjectCard({ project, labels, language }: ProjectCardProps) {
         <Badge>{project.category}</Badge>
         <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-300">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          {language === "fa" ? "نمای محصول" : "Product view"}
+          {project.status ?? (language === "fa" ? "نمای محصول" : "Product view")}
         </span>
       </div>
       <div className="mt-3">
         <ProjectVisual type={project.visual} language={language} />
       </div>
-      <h3 className="mt-4 text-xl font-bold leading-8 tracking-normal text-ink dark:text-white">{project.title}</h3>
+      <h4 className="mt-4 text-xl font-bold leading-8 tracking-normal text-ink dark:text-white">{project.title}</h4>
       <p className="mt-2 line-clamp-3 text-sm leading-7 muted-copy">{project.summary}</p>
       <ul className="mt-4 grid gap-2 rounded-xl bg-slate-50 p-3 dark:bg-slate-950/55">
         {project.outcomes.slice(0, 2).map((outcome) => (
@@ -49,12 +52,12 @@ export function ProjectCard({ project, labels, language }: ProjectCardProps) {
         ))}
       </div>
       <div className="mt-4 grid grid-cols-2 gap-2 border-t border-slate-200 pt-4 dark:border-slate-700/70">
-        {project.link ? (
-          <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-1 rounded-xl bg-blue-600 px-3 text-xs font-bold text-white shadow-sm">
-            {labels.visit}<ArrowUpRight className="h-3.5 w-3.5" />
+        {externalLink ? (
+          <a href={externalLink} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center gap-1 rounded-xl bg-blue-600 px-3 text-xs font-bold text-white shadow-sm">
+            {externalLabel}<ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         ) : null}
-        <Link href={`/projects/${project.slug}`} className={`inline-flex min-h-11 items-center justify-center gap-1 rounded-xl border border-slate-200 px-3 text-xs font-bold text-charcoal dark:border-slate-700 dark:text-slate-200 ${project.link ? "" : "col-span-2"}`}>
+        <Link href={`/projects/${project.slug}`} className={`inline-flex min-h-11 items-center justify-center gap-1 rounded-xl border border-slate-200 px-3 text-xs font-bold text-charcoal dark:border-slate-700 dark:text-slate-200 ${externalLink ? "" : "col-span-2"}`}>
           {labels.caseStudy}<ArrowUpRight className="h-3.5 w-3.5" />
         </Link>
       </div>
@@ -72,18 +75,19 @@ export function ProjectCard({ project, labels, language }: ProjectCardProps) {
           <ArrowUpRight className="h-4 w-4" />
         </Link>
       </div>
+      {project.status ? <p className="mt-3 text-xs font-semibold text-emerald-700 dark:text-emerald-300">{project.status}</p> : null}
       <div className="mt-5">
         <ProjectVisual type={project.visual} language={language} />
       </div>
       <div className="mt-4 flex flex-wrap items-center gap-3">
-        {project.link ? (
+        {externalLink ? (
           <a
-            href={project.link}
+            href={externalLink}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-blue-700"
           >
-            {labels.visit}
+            {externalLabel}
             <ArrowUpRight className="h-4 w-4" />
           </a>
         ) : (
@@ -92,7 +96,7 @@ export function ProjectCard({ project, labels, language }: ProjectCardProps) {
           </span>
         )}
       </div>
-      <h3 className="mt-5 text-2xl font-semibold tracking-normal text-ink dark:text-white">{project.title}</h3>
+      <h4 className="mt-5 text-2xl font-semibold tracking-normal text-ink dark:text-white">{project.title}</h4>
       <div className="mt-5 grid gap-4 text-sm leading-7 text-muted">
         <div className="subtle-card rounded-md p-4">
           <p className="mb-1 font-semibold text-charcoal dark:text-slate-100">{labels.problem}</p>

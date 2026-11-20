@@ -6,8 +6,8 @@ import type { Language } from "@/data/content";
 import { LivingSystemOrb } from "@/components/LivingSystemOrb";
 
 const labels = {
-  en: ["Systems", "Projects", "KPIs", "Workflow", "Contact"],
-  fa: ["سیستم‌ها", "پروژه‌ها", "KPI", "فرآیند", "تماس"]
+  en: ["Projects", "Systems", "Evidence", "Workflow", "Contact"],
+  fa: ["پروژه‌ها", "سیستم‌ها", "شواهد", "فرآیند", "تماس"]
 };
 
 export function ScrollCompanion({ language }: { language: Language }) {

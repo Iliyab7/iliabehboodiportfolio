@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "20261120T124817Z-github-portfolio-refresh",
+  "repository": "Iliyab7/iliabehboodiportfolio",
+  "occurred_at": "2026-11-20T12:48:17Z",
+  "title": "Refresh portfolio from GitHub project evidence",
+  "summary": "Expanded the bilingual portfolio around AI agents, business operations and commercial websites with public case studies grounded in source repositories.",
+  "outcome": "Added two bilingual studies and nine case-study routes total. The local Next.js production build and type checks passed.",
+  "status": "local-tested",
+  "decisions": [
+    "Place the project collection immediately after the introduction.",
+    "Show the difference between a public pilot starter, a setup kit and a live system.",
+    "Link public source documentation and summarize broader work without disclosing private repository details.",
+    "Replace estimated KPI panels with inspectable releases, acceptance criteria and build records."
+  ],
+  "blockers": [
+    "The existing public MAHED lead-platform demo responded with HTTP 402, so its unavailable link was removed from the portfolio."
+  ],
+  "next_actions": [
+    "Verify the automatic Firebase release and smoke-test both language modes on the public site."
+  ],
+  "evidence": [
+    "data/agentCaseStudies.ts",
+    "data/projectGroups.ts",
+    "https://github.com/Iliyab7/wellbeing-agent-starter",
+    "https://github.com/Iliyab7/drive-book-library-agent",
+    "npm run build"
+  ]
+}

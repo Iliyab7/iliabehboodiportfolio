@@ -1,3 +1,5 @@
+import { agentCaseStudies } from "./agentCaseStudies";
+
 export type CaseStudy = {
   slug: string;
   title: string;
@@ -11,17 +13,22 @@ export type CaseStudy = {
   process: readonly string[];
   impactMetrics: readonly { label: string; value: string }[];
   link?: string;
-  visual: "lead-platform" | "mining" | "website" | "quarry" | "chatbot" | "logistics" | "academy";
+  status?: string;
+  source?: string;
+  evidence?: readonly { label: string; href: string }[];
+  visual: "lead-platform" | "mining" | "website" | "quarry" | "chatbot" | "logistics" | "academy" | "wellbeing" | "library";
 };
 
 export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
   en: [
+    ...agentCaseStudies.en,
     {
       slug: "mahed-lead-generation-platform",
       title: "MAHED Market Intelligence & Lead Generation Platform",
-      category: "Live SaaS / Market Intelligence / Sales Operations",
+      category: "Market Intelligence / Sales Operations",
+      status: "Public demo currently unavailable",
       summary:
-        "A live, team-ready platform that brings market discovery, public-business lead collection, qualification, reporting, and sales follow-up into one shared workspace.",
+        "A shared platform that brings market discovery, public-business lead collection, qualification, reporting, and sales follow-up into one shared workspace.",
       problem:
         "Market research and lead generation were fragmented across map searches, files, manual checks, separate reports, and person-dependent follow-up.",
       solution:
@@ -32,22 +39,21 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
         "Human-reviewed qualification, duplicate handling, and lead lifecycle",
         "Configurable report builder with versioned operational exports",
         "Team workspace, access controls, job tracking, and recovery states",
-        "Persian RTL product experience plus a live public product website"
+        "Persian RTL product experience and a public product introduction"
       ],
       tools: ["Next.js", "React", "TypeScript", "Python", "Supabase", "PostgreSQL", "ExcelJS", "Product Architecture"],
       outcomes: [
         "Turned scattered lead research into a repeatable operating system",
         "Created one shared view for research, sales, and management",
         "Kept source evidence and human review visible in the workflow",
-        "Delivered a live product experience ready for team use"
+        "Designed the workspace for shared team use"
       ],
-      process: ["Map the research workflow", "Design the data model", "Build search and lead operations", "Add reporting and controls", "Ship and validate the live platform"],
+      process: ["Map the research workflow", "Design the data model", "Build search and lead operations", "Add reporting and controls", "Prepare launch and handoff"],
       impactMetrics: [
-        { label: "Product status", value: "Live" },
+        { label: "Public demo", value: "Unavailable" },
         { label: "Workspace", value: "Shared" },
         { label: "Workflow", value: "End-to-end" }
       ],
-      link: "https://mahed-platform.vercel.app/",
       visual: "lead-platform"
     },
     {
@@ -112,8 +118,8 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
       ],
       process: ["Audit paper reports", "Design structured data entry", "Automate validation", "Prepare KPI model", "Add AI summary layer"],
       impactMetrics: [
-        { label: "Reporting speed", value: "70%" },
-        { label: "Data structure", value: "100%" },
+        { label: "Reporting", value: "Automated" },
+        { label: "Data entry", value: "Validated" },
         { label: "Manual steps", value: "Reduced" }
       ],
       visual: "mining"
@@ -207,7 +213,7 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
       ],
       process: ["Map management questions", "Connect data sources", "Design retrieval logic", "Prototype AI responses", "Prepare reporting workflow"],
       impactMetrics: [
-        { label: "Response speed", value: "90%" },
+        { label: "Interface", value: "Chat" },
         { label: "Report requests", value: "Reduced" },
         { label: "Decision support", value: "AI-ready" }
       ],
@@ -246,12 +252,14 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
     }
   ],
   fa: [
+    ...agentCaseStudies.fa,
     {
       slug: "mahed-lead-generation-platform",
       title: "پلتفرم هوشمندی بازار و لید جنریشن ماهد",
-      category: "پلتفرم زنده / هوشمندی بازار / عملیات فروش",
+      category: "هوشمندی بازار / عملیات فروش",
+      status: "دموی عمومی فعلاً در دسترس نیست",
       summary:
-        "یک پلتفرم زنده و تیم‌محور که کشف بازار، جمع‌آوری لیدهای کسب‌وکاری عمومی، ارزیابی، گزارش‌سازی و پیگیری فروش را در یک فضای کاری مشترک کنار هم قرار می‌دهد.",
+        "یک پلتفرم تیمی که کشف بازار، جمع‌آوری لیدهای کسب‌وکاری عمومی، ارزیابی، گزارش‌سازی و پیگیری فروش را در یک فضای کاری مشترک کنار هم قرار می‌دهد.",
       problem:
         "تحقیق بازار و لید جنریشن بین جست‌وجوهای نقشه، فایل‌های پراکنده، بررسی‌های دستی، گزارش‌های جدا و پیگیری وابسته به افراد تقسیم شده بود.",
       solution:
@@ -262,22 +270,21 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
         "ارزیابی انسانی، مدیریت تکراری‌ها و چرخه عمر لید",
         "گزارش‌ساز قابل تنظیم با خروجی‌های عملیاتی نسخه‌بندی‌شده",
         "فضای کاری تیمی، کنترل دسترسی، رهگیری کارها و وضعیت‌های بازیابی",
-        "تجربه محصول فارسی RTL به‌همراه وب‌سایت معرفی زنده"
+        "رابط فارسی راست‌به‌چپ و صفحهٔ عمومی معرفی محصول"
       ],
       tools: ["Next.js", "React", "TypeScript", "Python", "Supabase", "PostgreSQL", "ExcelJS", "معماری محصول"],
       outcomes: [
         "تبدیل تحقیق پراکنده لید به یک سیستم عملیاتی قابل تکرار",
         "ایجاد یک نمای مشترک برای تحقیق، فروش و مدیریت",
         "حفظ شواهد منبع و نقش بررسی انسانی در جریان کار",
-        "تحویل تجربه محصول زنده و آماده استفاده تیمی"
+        "طراحی فضای کاری برای استفادهٔ مشترک تیم"
       ],
-      process: ["مدل‌سازی جریان تحقیق", "طراحی مدل داده", "ساخت عملیات جست‌وجو و لید", "افزودن گزارش و کنترل‌ها", "انتشار و اعتبارسنجی پلتفرم زنده"],
+      process: ["مدل‌سازی جریان تحقیق", "طراحی مدل داده", "ساخت عملیات جست‌وجو و لید", "افزودن گزارش و کنترل‌ها", "آماده‌سازی انتشار و تحویل"],
       impactMetrics: [
-        { label: "وضعیت محصول", value: "زنده" },
+        { label: "دموی عمومی", value: "در دسترس نیست" },
         { label: "فضای کاری", value: "مشترک" },
         { label: "جریان کار", value: "سرتاسری" }
       ],
-      link: "https://mahed-platform.vercel.app/",
       visual: "lead-platform"
     },
     {
@@ -343,8 +350,8 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
       ],
       process: ["تحلیل گزارش‌های کاغذی", "طراحی ورود داده ساختاریافته", "اتوماسیون اعتبارسنجی", "آماده‌سازی مدل KPI", "افزودن لایه خلاصه‌سازی AI"],
       impactMetrics: [
-        { label: "سرعت گزارش‌گیری", value: "۷۰٪" },
-        { label: "ساختار داده", value: "۱۰۰٪" },
+        { label: "گزارش‌گیری", value: "خودکار" },
+        { label: "ورود داده", value: "اعتبارسنجی‌شده" },
         { label: "مراحل دستی", value: "کاهش‌یافته" }
       ],
       visual: "mining"
@@ -440,7 +447,7 @@ export const caseStudies: Record<"en" | "fa", readonly CaseStudy[]> = {
       ],
       process: ["شناسایی سوالات مدیریتی", "اتصال منابع داده", "طراحی منطق بازیابی", "نمونه‌سازی پاسخ‌های AI", "آماده‌سازی جریان گزارش‌گیری"],
       impactMetrics: [
-        { label: "سرعت پاسخ", value: "۹۰٪" },
+        { label: "رابط کاربری", value: "گفت‌وگو" },
         { label: "درخواست گزارش", value: "کاهش" },
         { label: "تصمیم‌یار", value: "آماده AI" }
       ],
