@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "id": "20261120T131651Z-feature-six-portfolio-projects",
+  "repository": "Iliyab7/iliabehboodiportfolio",
+  "occurred_at": "2026-11-20T13:16:51Z",
+  "title": "Feature six representative portfolio projects",
+  "summary": "Placed six projects immediately below the homepage introduction and designed case-specific UI illustrations with fictional data.",
+  "outcome": "The six featured cards have a consistent visual frame and project-specific content, shared with their detail pages. The other fifteen retain their categories and URLs.",
+  "status": "implemented",
+  "decisions": [
+    "Feature work in market intelligence, knowledge systems, operations, engineering delivery, financial controls and commerce.",
+    "Use bilingual fictional interface examples. Preserve past project route and category anchor compatibility."
+  ],
+  "blockers": [],
+  "next_actions": [
+    "Verify responsive layouts and the Firebase release from main."
+  ],
+  "evidence": [
+    "data/featuredProjects.ts",
+    "components/FeaturedProjectVisual.tsx",
+    "app/page.tsx"
+  ]
+}

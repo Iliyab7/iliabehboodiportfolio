@@ -246,8 +246,10 @@ export const content = {
       ]
     },
     projectsSection: {
-      eyebrow: "Portfolio",
-      title: "Selected projects",
+      title: "Featured projects",
+      featuredDescription: "Six examples of my work in market intelligence, knowledge systems, operations and financial controls.",
+      libraryTitle: "More projects",
+      browseLibrary: "Browse the project library",
       description: "Case studies from public agent starter kits, industrial and commercial systems, and websites. Each study shows what was built and points to the available work.",
       labels: {
         problem: "Problem",
@@ -471,8 +473,10 @@ export const content = {
       ]
     },
     projectsSection: {
-      eyebrow: "پورتفولیو",
-      title: "پروژه‌های منتخب",
+      title: "پروژه‌های شاخص",
+      featuredDescription: "شش نمونه از کار من در هوشمندی بازار، سامانه‌های دانش، عملیات و کنترل‌های مالی.",
+      libraryTitle: "سایر پروژه‌ها",
+      browseLibrary: "دیدن سایر پروژه‌ها",
       description: "مطالعه‌های موردی از بسته‌های عمومی عامل‌های هوش مصنوعی، سیستم‌های صنعتی و تجاری و وب‌سایت‌ها. در هر پروژه می‌توانید خروجی و مستندات در دسترس را ببینید.",
       labels: {
         problem: "مسئله",

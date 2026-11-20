@@ -5,9 +5,11 @@ import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Moon, Sun } from "lucide-react";
 import { Badge } from "@/components/Badge";
 import { Container } from "@/components/Container";
+import { FeaturedProjectVisual } from "@/components/FeaturedProjectVisual";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { Reveal } from "@/components/Reveal";
 import { caseStudies } from "@/data/caseStudies";
+import { featuredProjects } from "@/data/featuredProjects";
 import { contactLinks, content, type Language } from "@/data/content";
 
 type Theme = "light" | "dark";
@@ -62,6 +64,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
 
   const externalLink = project.source ?? project.link;
   const verification = project.verification;
+  const feature = featuredProjects.find((entry) => entry.slug === project.slug);
 
   return (
     <main dir={isFa ? "rtl" : "ltr"} className="min-h-screen bg-offwhite text-ink dark:bg-[#050a12] dark:text-slate-100">
@@ -140,7 +143,9 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <ProjectVisual type={project.visual} language={language} />
+            {feature
+              ? <FeaturedProjectVisual feature={feature} language={language} />
+              : <ProjectVisual type={project.visual} language={language} />}
           </Reveal>
         </Container>
       </section>
