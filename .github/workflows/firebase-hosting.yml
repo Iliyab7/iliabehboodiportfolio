@@ -1,0 +1,60 @@
+name: Firebase Hosting
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Firebase Hosting channel
+        type: choice
+        options: [preview, live]
+        default: preview
+
+permissions:
+  contents: read
+
+concurrency:
+  group: firebase-hosting-${{ github.event_name == 'pull_request' && github.ref || inputs.channel || 'live' }}
+  cancel-in-progress: false
+
+jobs:
+  hosting:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: ${{ vars.PORTFOLIO_SITE_URL || (vars.FIREBASE_PROJECT_ID && format('https://{0}.web.app', vars.FIREBASE_PROJECT_ID)) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Check manual deployment target
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+          CHANNEL: ${{ inputs.channel }}
+        run: |
+          if [ -z "$PROJECT_ID" ]; then
+            echo 'Set the FIREBASE_PROJECT_ID repository variable to deploy.' >&2
+            exit 1
+          fi
+          if [ "$CHANNEL" = live ] && [ "$GITHUB_REF" != refs/heads/main ]; then
+            echo 'Select the main branch to deploy the live channel.' >&2
+            exit 1
+          fi
+      - name: Deploy to Firebase Hosting
+        if: github.event_name != 'pull_request' && vars.FIREBASE_PROJECT_ID != '' && (inputs.channel == 'preview' || github.ref == 'refs/heads/main')
+        uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a # v0.11.0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_HOSTING_SERVICE_ACCOUNT }}
+          firebaseToolsVersion: '15.37.0'
+          projectId: ${{ vars.FIREBASE_PROJECT_ID }}
+          channelId: ${{ inputs.channel || 'live' }}
+          disableComment: true

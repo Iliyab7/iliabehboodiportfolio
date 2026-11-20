@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "20261120T114029Z-firebase-hosting",
+  "repository": "Iliyab7/iliabehboodiportfolio",
+  "occurred_at": "2026-11-20T11:40:29Z",
+  "title": "Prepare portfolio for Firebase Hosting",
+  "summary": "Configured Next.js static export, Firebase Hosting and a GitHub Actions deployment workflow for the existing portfolio.",
+  "outcome": "The production build generated the homepage and seven project pages. Firebase Hosting emulator checks passed for direct paths, trailing-slash redirects, navigation payloads, sitemap, robots and 404. The workflow passed actionlint. No Firebase release had been published at capture time.",
+  "status": "local-tested",
+  "decisions": [
+    "Serve the generated HTML files using Firebase Hosting on Spark, with the Firebase project host as the production metadata origin until a custom domain is verified.",
+    "Build pull requests without deployment credentials and reserve live deployments for the main branch."
+  ],
+  "blockers": ["Direct Chrome access and an authorized Firebase project connection were not available at capture time."],
+  "next_actions": ["Connect the Firebase project to the GitHub workflow, deploy a preview, verify the bilingual flows and contact links, then verify the live web.app release."],
+  "evidence": ["firebase.json", ".github/workflows/firebase-hosting.yml", "npm run build and Firebase Hosting emulator HTTP checks"]
+}
