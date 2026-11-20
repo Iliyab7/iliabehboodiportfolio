@@ -4,6 +4,6 @@
 
 با Node.js 24، دستورهای `npm ci` و `npm run build` خروجی استاتیک را در `out/` می‌سازند. تنظیمات Hosting در `firebase.json` است و صفحه‌های نمونه‌کار مستقیم و با refresh باز می‌شوند.
 
-Workflow به متغیر `FIREBASE_PROJECT_ID` و GitHub Secret به نام `FIREBASE_HOSTING_SERVICE_ACCOUNT` برای حساب سرویس پروژهٔ Firebase نیاز دارد. بعد از تنظیم این دو، از **Actions → Firebase Hosting** کانال `preview` را برای بررسی اجرا کنید. کانال `live` فقط از `main` منتشر می‌شود و pushهای بعدی به آن شاخه نیز انتشار را اجرا می‌کنند.
+GitHub Actions با تغییرات `main` نسخهٔ زنده را روی Firebase Hosting منتشر می‌کند. برای انتشار دستی، در **Actions → Firebase Hosting** شاخهٔ `main` را انتخاب کنید و کانال `preview` یا `live` را اجرا کنید. دسترسی انتشار از Workload Identity Federation و اعتبارنامهٔ موقت گوگل استفاده می‌کند.
 
-Workflow به‌طور پیش‌فرض آدرس `<project-id>.web.app` را در canonical، sitemap و robots استفاده می‌کند. وقتی دامنهٔ اختصاصی به Firebase متصل و تأیید شد، متغیر `PORTFOLIO_SITE_URL` را روی URL آن بگذارید و دوباره بیلد و منتشر کنید.
+آدرس فعلی سایت `https://ilia-behboodi-portfolio.web.app` است و در canonical، sitemap و robots استفاده می‌شود. اگر دامنهٔ اختصاصی به Firebase متصل و تأیید شد، متغیر `PORTFOLIO_SITE_URL` را روی آدرس آن بگذارید و دوباره بیلد و منتشر کنید.
